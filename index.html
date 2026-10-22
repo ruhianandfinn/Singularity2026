@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SINGULARITY: The AI Governance Cooperative Game</title>
+  <title>SINGULARITY: The Prevention</title>
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -17,11 +17,11 @@
           },
           colors: {
             brand: {
-              50: '#F0F9FF',
-              100: '#E0F2FE',
-              500: '#0EA5E9',
-              600: '#0284C7',
-              700: '#0369A1',
+              50: '#FFF7ED',
+              100: '#FFEDD5',
+              500: '#F97316',
+              600: '#EA580C',
+              700: '#C2410C',
             }
           }
         }
@@ -36,12 +36,12 @@
   <style>
     body {
       font-family: 'Inter', sans-serif;
-      background-color: #F8FAFC;
+      background-color: #FAF8F5;
       background-image: 
-        radial-gradient(circle at 10% 20%, rgba(14, 165, 233, 0.05) 0%, transparent 40%),
-        radial-gradient(circle at 90% 80%, rgba(99, 102, 241, 0.05) 0%, transparent 40%),
-        linear-gradient(rgba(203, 213, 225, 0.25) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(203, 213, 225, 0.25) 1px, transparent 1px);
+        radial-gradient(circle at 10% 20%, rgba(249, 115, 22, 0.04) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(14, 165, 233, 0.04) 0%, transparent 40%),
+        linear-gradient(rgba(226, 232, 240, 0.3) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(226, 232, 240, 0.3) 1px, transparent 1px);
       background-size: 100% 100%, 100% 100%, 28px 28px, 28px 28px;
       color: #1E293B;
       overflow-x: hidden;
@@ -56,25 +56,25 @@
       font-family: 'JetBrains Mono', monospace;
     }
 
-    /* Harmonized Light Cards */
+    /* Harmonized Light Pastel Cards */
     .glass-card {
-      background: rgba(255, 255, 255, 0.92);
+      background: rgba(255, 255, 255, 0.94);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border: 1px solid rgba(226, 232, 240, 0.9);
-      box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.04), 0 2px 6px -1px rgba(15, 23, 42, 0.02);
+      box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.03), 0 2px 6px -1px rgba(15, 23, 42, 0.02);
       border-radius: 16px;
       transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
     }
 
     .glass-card:hover {
-      border-color: rgba(148, 163, 184, 0.5);
+      border-color: rgba(203, 213, 225, 0.8);
     }
 
     .glass-card-interactive:hover {
       transform: translateY(-2px);
-      box-shadow: 0 12px 25px -5px rgba(15, 23, 42, 0.08), 0 0 15px rgba(14, 165, 233, 0.12);
-      border-color: rgba(14, 165, 233, 0.4);
+      box-shadow: 0 12px 25px -5px rgba(15, 23, 42, 0.08), 0 0 15px rgba(249, 115, 22, 0.1);
+      border-color: rgba(249, 115, 22, 0.3);
     }
 
     /* Command Buttons */
@@ -90,11 +90,11 @@
     }
 
     .btn-command:hover:not(:disabled) {
-      background: #F1F5F9;
-      border-color: #0EA5E9;
-      color: #0284C7;
+      background: #FFF7ED;
+      border-color: #F97316;
+      color: #C2410C;
       transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(14, 165, 233, 0.15);
+      box-shadow: 0 4px 12px rgba(249, 115, 22, 0.15);
     }
 
     .btn-command:active:not(:disabled) {
@@ -110,29 +110,41 @@
     }
 
     .btn-primary {
+      background: linear-gradient(135deg, #F97316 0%, #EA580C 100%);
+      border: 1px solid #F97316;
+      color: #FFFFFF;
+      box-shadow: 0 4px 14px rgba(249, 115, 22, 0.25);
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      background: linear-gradient(135deg, #FB923C 0%, #F97316 100%);
+      box-shadow: 0 6px 18px rgba(249, 115, 22, 0.35);
+      color: #FFFFFF;
+    }
+
+    .btn-accent {
       background: linear-gradient(135deg, #0EA5E9 0%, #0284C7 100%);
       border: 1px solid #0EA5E9;
       color: #FFFFFF;
       box-shadow: 0 4px 14px rgba(14, 165, 233, 0.25);
     }
 
-    .btn-primary:hover:not(:disabled) {
+    .btn-accent:hover:not(:disabled) {
       background: linear-gradient(135deg, #38BDF8 0%, #0EA5E9 100%);
       box-shadow: 0 6px 18px rgba(14, 165, 233, 0.35);
       color: #FFFFFF;
     }
 
-    .btn-accent {
-      background: linear-gradient(135deg, #6366F1 0%, #4F46E5 100%);
-      border: 1px solid #6366F1;
+    .btn-regulator {
+      background: linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%);
+      border: 1px solid #8B5CF6;
       color: #FFFFFF;
-      box-shadow: 0 4px 14px rgba(99, 102, 241, 0.25);
+      box-shadow: 0 4px 14px rgba(139, 92, 246, 0.25);
     }
 
-    .btn-accent:hover:not(:disabled) {
-      background: linear-gradient(135deg, #818CF8 0%, #6366F1 100%);
-      box-shadow: 0 6px 18px rgba(99, 102, 241, 0.35);
-      color: #FFFFFF;
+    .btn-regulator:hover:not(:disabled) {
+      background: linear-gradient(135deg, #A78BFA 0%, #8B5CF6 100%);
+      box-shadow: 0 6px 18px rgba(139, 92, 246, 0.35);
     }
 
     /* Custom Light Scrollbar */
@@ -170,14 +182,14 @@
 <body class="flex flex-col min-h-screen antialiased text-slate-800">
 
   <!-- TOP HEADER / EXECUTIVE COMMAND BANNER -->
-  <header class="bg-white/80 border-b border-slate-200/80 backdrop-blur-xl sticky top-0 z-40 px-4 py-3.5 shadow-sm">
+  <header class="bg-white/85 border-b border-slate-200/80 backdrop-blur-xl sticky top-0 z-40 px-4 py-3.5 shadow-sm">
     <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-4">
       
       <!-- Brand & Status -->
       <div class="flex items-center space-x-3.5">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-sky-500 to-indigo-600 p-0.5 shadow-md flex items-center justify-center">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 p-0.5 shadow-md flex items-center justify-center">
           <div class="w-full h-full bg-white rounded-[10px] flex items-center justify-center">
-            <span class="font-heading font-extrabold text-sky-600 text-xl">S</span>
+            <span class="font-heading font-extrabold text-orange-600 text-xl">S</span>
           </div>
         </div>
         <div>
@@ -185,32 +197,29 @@
             <h1 class="text-xl md:text-2xl font-heading font-extrabold tracking-tight text-slate-900 leading-none">
               SINGULARITY
             </h1>
-            <span class="px-2 py-0.5 text-[10px] font-mono uppercase tracking-wider bg-sky-100 text-sky-800 border border-sky-200 rounded-md font-bold">
-              AI Governance Simulator
+            <span class="px-2 py-0.5 text-[10px] font-mono uppercase tracking-wider bg-orange-100 text-orange-800 border border-orange-200 rounded-md font-bold">
+              The Prevention
             </span>
           </div>
           <p class="text-xs text-slate-500 font-medium">
-            Multi-Stakeholder Cooperative Strategy Board
+            AI Governance Cooperative Game • 5 Regional Sectors
           </p>
         </div>
       </div>
 
-      <!-- Navigation Tabs -->
+      <!-- Navigation Tabs (4 Clean Tabs) -->
       <nav class="flex flex-wrap items-center gap-1.5 bg-slate-100 p-1 border border-slate-200 rounded-xl">
-        <button onclick="switchTab('game')" id="tab-game" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all bg-white text-sky-700 shadow-sm border border-slate-200 font-bold">
+        <button onclick="switchTab('game')" id="tab-game" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all bg-white text-orange-700 shadow-sm border border-slate-200 font-bold">
           🎲 Board Operations
         </button>
         <button onclick="switchTab('pitch')" id="tab-pitch" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold text-slate-600 hover:text-slate-900 hover:bg-white/60 transition-all">
-          📢 Briefing Deck
+          📢 3-Minute Pitch
         </button>
         <button onclick="switchTab('roles')" id="tab-roles" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold text-slate-600 hover:text-slate-900 hover:bg-white/60 transition-all">
-          🃏 Role Dossiers
+          🃏 7 Character Roles
         </button>
         <button onclick="switchTab('rules')" id="tab-rules" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold text-slate-600 hover:text-slate-900 hover:bg-white/60 transition-all">
-          📖 Compendium
-        </button>
-        <button onclick="switchTab('github')" id="tab-github" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold text-slate-600 hover:text-slate-900 hover:bg-white/60 transition-all">
-          🚀 Deployment Guide
+          📖 Rules & Action Legend
         </button>
       </nav>
 
@@ -228,17 +237,17 @@
   <main class="flex-1 p-4 md:p-6 max-w-7xl mx-auto w-full space-y-6">
 
     <!-- ========================================== -->
-    <!-- SECTION 1: GAME BOARD & OPERATIONS -->
+    <!-- TAB 1: GAME BOARD & OPERATIONS -->
     <!-- ========================================== -->
     <section id="section-game" class="space-y-6">
 
       <!-- TOP METRICS & DEPLOYMENT PIPELINE TRACK -->
-      <div class="glass-card p-5 space-y-4 relative overflow-hidden border-t-4 border-t-sky-500">
+      <div class="glass-card p-5 space-y-4 relative overflow-hidden border-t-4 border-t-orange-500">
         <div class="flex flex-wrap justify-between items-center gap-4 border-b border-slate-200 pb-3">
           <div>
             <div class="flex items-center gap-2">
-              <span class="w-2.5 h-2.5 rounded-full bg-sky-500 glow-dot animate-pulse"></span>
-              <h2 class="text-xs font-mono font-bold uppercase text-sky-700 tracking-wider">AI DEPLOYMENT PIPELINE TRACK</h2>
+              <span class="w-2.5 h-2.5 rounded-full bg-orange-500 glow-dot animate-pulse"></span>
+              <h2 class="text-xs font-mono font-bold uppercase text-orange-700 tracking-wider">AI DEPLOYMENT PIPELINE TRACK (16 STEPS)</h2>
             </div>
             <p class="text-xs text-slate-500 mt-0.5">As AI deployment advances, draw frequency of systemic harm dice escalates each round.</p>
           </div>
@@ -246,7 +255,7 @@
           <div class="flex items-center gap-3 font-mono text-xs">
             <div class="bg-slate-100 border border-slate-200 px-3 py-1.5 rounded-lg flex items-center gap-2">
               <span class="text-slate-500">BAG RESERVE:</span>
-              <span id="bag-count" class="text-sky-700 font-bold">24 DICE</span>
+              <span id="bag-count" class="text-orange-700 font-bold">24 DICE</span>
             </div>
             <div id="rate-multiplier-badge" class="bg-amber-100 border border-amber-200 text-amber-800 px-3 py-1.5 rounded-lg font-bold">
               Rate: 2 Harms / Turn
@@ -254,7 +263,7 @@
           </div>
         </div>
 
-        <!-- Pipeline Nodes -->
+        <!-- 16 Pipeline Nodes -->
         <div>
           <div class="grid grid-cols-8 md:grid-cols-16 gap-1.5" id="track-nodes-container">
             <!-- Rendered dynamically -->
@@ -265,52 +274,56 @@
       <!-- MAIN OPERATIONAL GRID -->
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
 
-        <!-- LEFT COLUMN: 6 REGIONAL SECTORS (SPAN 7) -->
+        <!-- LEFT COLUMN: 5 REGIONAL SECTORS (SPAN 7) -->
         <div class="lg:col-span-7 space-y-4">
           <div class="flex justify-between items-center px-1">
             <h3 class="text-lg font-heading font-bold text-slate-900 flex items-center gap-2">
-              <span>🌍 REGIONAL GOVERNANCE SECTORS</span>
+              <span>🌍 5 REGIONAL SECTORS</span>
             </h3>
-            <span class="text-xs font-mono text-slate-500">6 Global Sectors</span>
+            <span class="text-xs font-mono text-slate-500">Sectors 1 to 5</span>
           </div>
 
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="regions-container">
-            <!-- Rendered dynamically -->
+          <!-- 5 Regional Sector Cards Grid -->
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4" id="regions-container">
+            <!-- Rendered dynamically via JS -->
           </div>
         </div>
 
-        <!-- RIGHT COLUMN: COMMAND & ROLE CONTROLS (SPAN 5) -->
+        <!-- RIGHT COLUMN: COMMAND & ACTIVE ROLE CONTROLS (SPAN 5) -->
         <div class="lg:col-span-5 space-y-5">
 
           <!-- ACTIVE PLAYER ROLE DOSSIER -->
-          <div class="glass-card p-5 space-y-4 border-l-4 border-l-sky-500">
+          <div class="glass-card p-5 space-y-4 border-l-4 border-l-orange-500">
             <div class="flex justify-between items-start border-b border-slate-200 pb-3">
               <div>
-                <span class="text-[10px] font-mono uppercase tracking-widest text-sky-700 font-bold">ACTIVE TURNTABLE STAKEHOLDER</span>
-                <h3 id="player-role-name" class="text-2xl font-heading font-bold text-slate-900 mt-0.5">NGO COALITION</h3>
+                <span class="text-[10px] font-mono uppercase tracking-widest text-orange-700 font-bold">ACTIVE TURNTABLE STAKEHOLDER</span>
+                <h3 id="player-role-name" class="text-2xl font-heading font-bold text-slate-900 mt-0.5">REGULATOR / OPERATOR</h3>
                 <div class="flex items-center gap-2 mt-1">
-                  <span class="text-xs text-slate-500">Current Sector:</span>
-                  <span id="player-location-text" class="text-xs font-semibold text-sky-800 bg-sky-100 border border-sky-200 px-2 py-0.5 rounded">North America</span>
+                  <span class="text-xs text-slate-500">Current Location:</span>
+                  <span id="player-location-text" class="text-xs font-semibold text-orange-800 bg-orange-100 border border-orange-200 px-2 py-0.5 rounded">Sector 1</span>
                 </div>
               </div>
 
               <div id="player-pawn-badge" class="w-12 h-12 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-center text-2xl shadow-sm">
-                ♟️
+                ⚖️
               </div>
             </div>
 
-            <!-- Role Passive Ability -->
-            <div class="bg-amber-50/70 p-3 rounded-xl border border-amber-200/80 space-y-1">
-              <span class="text-[10px] font-mono uppercase text-amber-800 font-bold tracking-wider">⚡ STAKEHOLDER PASSIVE CAPABILITY:</span>
+            <!-- Role Passive & Special Plus Capability -->
+            <div class="bg-amber-50/80 p-3 rounded-xl border border-amber-200/80 space-y-1">
+              <div class="flex items-center justify-between">
+                <span class="text-[10px] font-mono uppercase text-amber-800 font-bold tracking-wider">⚡ STAKEHOLDER PASSIVE & SPECIAL PLUS:</span>
+                <span id="special-plus-tag" class="hidden text-[9px] font-mono font-bold uppercase bg-purple-100 text-purple-800 border border-purple-300 px-1.5 py-0.5 rounded">Special Plus Active</span>
+              </div>
               <p id="player-power-text" class="text-xs text-amber-900 leading-relaxed font-medium">
-                Free Evidence transfer to allies in the same regional sector.
+                Invoke a resourced Regulatory Action card at any time and convert deployment dice into sandbox events via Resources (R), along with enhanced treatment capabilities (2xT, 3xT).
               </p>
             </div>
 
             <!-- Evidence Stash -->
             <div class="flex items-center justify-between bg-slate-100/80 px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs">
               <span class="text-slate-600 font-medium">📁 Evidence Stash:</span>
-              <span id="player-evidence-stash" class="font-mono font-bold text-sky-700">0 Collected</span>
+              <span id="player-evidence-stash" class="font-mono font-bold text-orange-700">0 Collected</span>
             </div>
 
             <!-- ACTION DICE ROLL TRAY -->
@@ -329,39 +342,56 @@
 
             <!-- STRATEGIC COMMAND ACTIONS BUTTONS -->
             <div class="grid grid-cols-2 gap-2 pt-2 border-t border-slate-200">
-              <button onclick="actionMoveModal()" class="btn-command px-3 py-2 text-xs flex items-center justify-center gap-1.5">
-                <span>⛵/✈️</span> Move Sector
+              <button onclick="actionShareLocally()" class="btn-command px-2.5 py-2 text-xs flex items-center justify-center gap-1.5" title="Move to adjacent regional sector">
+                <span>🏘️</span> Share Locally (L)
               </button>
-              <button onclick="actionTreatHarm()" class="btn-command px-3 py-2 text-xs flex items-center justify-center gap-1.5">
-                <span>💉</span> Treat Harm
+              <button onclick="actionShareInternationally()" class="btn-command px-2.5 py-2 text-xs flex items-center justify-center gap-1.5" title="Move to ANY regional sector">
+                <span>🌐</span> Share Intl (I)
               </button>
-              <button onclick="actionCollectEvidence()" class="btn-command px-3 py-2 text-xs flex items-center justify-center gap-1.5">
-                <span>📁</span> Gather Evidence
+              <button onclick="actionCollectEvidence()" class="btn-command px-2.5 py-2 text-xs flex items-center justify-center gap-1.5" title="Extract 1 harm die into team evidence stash">
+                <span>📁</span> Evidence (E)
               </button>
-              <button onclick="actionConvene()" class="btn-command px-3 py-2 text-xs flex items-center justify-center gap-1.5">
-                <span>🚁</span> Convene Allies
+              <button onclick="actionDeploy()" class="btn-command px-2.5 py-2 text-xs flex items-center justify-center gap-1.5" title="Deploy early warning / sandbox shield">
+                <span>⚡</span> Deploy (D)
               </button>
-              <button onclick="actionResource()" class="btn-command px-3 py-2 text-xs flex items-center justify-center gap-1.5">
-                <span>⚙️</span> Resource / Slow
+              <button onclick="actionTreatHarm()" class="btn-command px-2.5 py-2 text-xs flex items-center justify-center gap-1.5" title="Treat harm die using IV bag protocol">
+                <!-- IV Bag Inline SVG -->
+                <svg class="w-3.5 h-3.5 text-rose-600 inline" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>
+                Treat (T)
               </button>
-              <button onclick="actionSummitModal()" class="btn-command btn-accent px-3 py-2 text-xs flex items-center justify-center gap-1.5">
-                <span>🏛️</span> Convene Summit
+              <button onclick="actionConvene()" class="btn-command px-2.5 py-2 text-xs flex items-center justify-center gap-1.5" title="Convene allies into current sector">
+                <!-- 3 Human Bodies SVG -->
+                <svg class="w-3.5 h-3.5 text-indigo-600 inline" fill="currentColor" viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+                Convene (C)
+              </button>
+              <button onclick="actionResource()" class="btn-command px-2.5 py-2 text-xs flex items-center justify-center gap-1.5 col-span-2" title="Convert deployment die into sandbox events / slow track">
+                <span>⚙️</span> Resource (R) - Convert Deployment to Sandbox
               </button>
             </div>
 
-            <!-- END TURN BUTTON -->
-            <div class="pt-2">
-              <button onclick="endPlayerTurn()" class="w-full btn-command bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white border-emerald-600 py-2.5 text-xs font-bold uppercase tracking-wider rounded-xl shadow-md flex items-center justify-center gap-2">
-                <span>⏩</span> End Turn & Trigger AI Deployment
+            <!-- SPECIAL REGULATOR ACTION BUTTON (ONLY SHOWS OR HIGHLIGHTS WHEN REGULATOR IS ACTIVE) -->
+            <div id="regulator-special-container" class="pt-1">
+              <button onclick="actionRegulatorSpecialCard()" class="w-full btn-command btn-regulator py-2 text-xs font-bold flex items-center justify-center gap-2">
+                <span>⚖️</span> Invoke Special Regulatory Action Card
+              </button>
+            </div>
+
+            <!-- SUMMIT & END TURN BUTTONS -->
+            <div class="pt-2 grid grid-cols-1 sm:grid-cols-2 gap-2">
+              <button onclick="actionSummitModal()" class="btn-command btn-accent py-2.5 text-xs font-bold uppercase tracking-wider rounded-xl shadow-md flex items-center justify-center gap-1.5">
+                <span>🏛️</span> Convene Summit
+              </button>
+              <button onclick="endPlayerTurn()" class="btn-command bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white border-emerald-600 py-2.5 text-xs font-bold uppercase tracking-wider rounded-xl shadow-md flex items-center justify-center gap-1.5">
+                <span>⏩</span> End Turn
               </button>
             </div>
           </div>
 
-          <!-- INTERNATIONAL CONSENSUS PILLARS STATUS -->
+          <!-- INTERNATIONAL CONSENSUS PILLARS MATRIX -->
           <div class="glass-card p-5 space-y-3">
             <div class="flex justify-between items-center border-b border-slate-200 pb-2">
               <h4 class="text-xs font-mono font-bold text-slate-700 uppercase tracking-wider">GLOBAL TREATY RATIFICATION MATRIX</h4>
-              <span class="text-[10px] font-mono text-sky-700 font-bold">4 Pillars</span>
+              <span class="text-[10px] font-mono text-orange-700 font-bold">4 Pillars</span>
             </div>
 
             <div class="grid grid-cols-2 gap-2" id="consensus-pillars">
@@ -383,20 +413,20 @@
     </section>
 
     <!-- ========================================== -->
-    <!-- SECTION 2: 3-MINUTE BRIEFING PITCH DECK -->
+    <!-- TAB 2: 3-MINUTE PITCH BRIEFING -->
     <!-- ========================================== -->
     <section id="section-pitch" class="hidden space-y-6">
 
       <div class="glass-card p-6 border-l-4 border-l-indigo-500 flex flex-wrap justify-between items-center gap-4">
         <div>
           <span class="px-2.5 py-1 text-[10px] font-mono uppercase tracking-widest bg-indigo-100 text-indigo-800 border border-indigo-200 rounded-md font-bold">
-            EXECUTIVE BRIEFING STORYBOOK
+            EXECUTIVE BRIEFING
           </span>
           <h2 class="text-2xl md:text-3xl font-heading font-bold text-slate-900 mt-2">
-            "SINGULARITY: THE AI GOVERNANCE GAME"
+            "SINGULARITY: THE PREVENTION"
           </h2>
           <p class="text-xs text-slate-500 font-medium">
-            3-Minute Pitch Presentation for Stakeholders & Game Designers
+            3-Minute Pitch Presentation for Stakeholders & AI Safety Researchers
           </p>
         </div>
 
@@ -406,7 +436,7 @@
       </div>
 
       <!-- CAROUSEL SLIDE CONTAINER -->
-      <div class="glass-card p-6 md:p-10 relative min-h-[400px] flex flex-col justify-between space-y-6">
+      <div class="glass-card p-6 md:p-10 relative min-h-[380px] flex flex-col justify-between space-y-6">
 
         <div id="pitch-slide-content" class="space-y-6">
           <!-- Slide JS Injected Here -->
@@ -418,8 +448,8 @@
             <span>⬅️</span> Previous Slide
           </button>
           
-          <div class="font-mono text-xs font-bold text-sky-700" id="slide-number">
-            SLIDE 1 / 6
+          <div class="font-mono text-xs font-bold text-orange-700" id="slide-number">
+            SLIDE 1 / 5
           </div>
 
           <button onclick="nextSlide()" class="btn-command btn-primary px-4 py-2 text-xs flex items-center gap-2">
@@ -432,15 +462,22 @@
     </section>
 
     <!-- ========================================== -->
-    <!-- SECTION 3: CHARACTER ROLES DOSSIERS -->
+    <!-- TAB 3: 7 CHARACTER ROLES -->
     <!-- ========================================== -->
     <section id="section-roles" class="hidden space-y-6">
 
-      <div class="glass-card p-5 border-l-4 border-l-amber-500">
-        <h2 class="text-2xl font-heading font-bold text-slate-900">🃏 STAKEHOLDER ROLE DOSSIERS</h2>
-        <p class="text-xs text-slate-500 mt-1">
-          Explore all 7 specialized governance roles, action dice allocation pools, and passive strategic powers.
-        </p>
+      <div class="glass-card p-5 border-l-4 border-l-purple-500">
+        <div class="flex flex-wrap justify-between items-center gap-2">
+          <div>
+            <h2 class="text-2xl font-heading font-bold text-slate-900">🃏 7 CHARACTER ROLE DOSSIERS</h2>
+            <p class="text-xs text-slate-500 mt-1">
+              Explore all 7 specialized governance roles, action dice allocation pools, and passive capabilities including the Regulator's Special Plus.
+            </p>
+          </div>
+          <span class="px-3 py-1 bg-purple-100 text-purple-800 border border-purple-200 text-xs font-mono font-bold rounded-lg">
+            7 Stakeholders
+          </span>
+        </div>
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5" id="roles-grid">
@@ -450,146 +487,127 @@
     </section>
 
     <!-- ========================================== -->
-    <!-- SECTION 4: RULES & ICONOGRAPHY COMPENDIUM -->
+    <!-- TAB 4: RULES & ACTION LEGEND -->
     <!-- ========================================== -->
     <section id="section-rules" class="hidden space-y-6">
 
-      <div class="glass-card p-5 border-l-4 border-l-sky-500">
-        <h2 class="text-2xl font-heading font-bold text-slate-900">📖 RULES & ICONOGRAPHY COMPENDIUM</h2>
+      <div class="glass-card p-5 border-l-4 border-l-orange-500">
+        <h2 class="text-2xl font-heading font-bold text-slate-900">📖 RULES & ACTION LEGEND COMPENDIUM</h2>
         <p class="text-xs text-slate-500 mt-1">
-          Reference guide for action dice symbols, harm pillar classifications, and win/loss mechanics.
+          Complete reference guide for action mechanics, icons, 5 regional sectors, and systemic harm pillars.
         </p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-        <!-- ACTION SYMBOLS -->
+        <!-- ACTIONS LEGEND -->
         <div class="glass-card p-5 space-y-4">
-          <h3 class="text-base font-heading font-bold text-sky-800 border-b border-slate-200 pb-2">🎲 ACTION DICE FACES</h3>
-          <ul class="space-y-2.5 text-xs">
-            <li class="flex items-center gap-3 bg-slate-50 p-2.5 rounded-xl border border-slate-200">
-              <span class="text-xl bg-white p-1.5 rounded-lg border border-slate-200 shadow-sm">⛵</span>
-              <div>
-                <span class="font-bold text-sky-800">L - Local Share (Boat):</span>
-                <p class="text-slate-600 mt-0.5">Move pawn to an adjacent regional sector tile.</p>
-              </div>
-            </li>
-            <li class="flex items-center gap-3 bg-slate-50 p-2.5 rounded-xl border border-slate-200">
-              <span class="text-xl bg-white p-1.5 rounded-lg border border-slate-200 shadow-sm">✈️</span>
-              <div>
-                <span class="font-bold text-indigo-800">I - International Share (Plane):</span>
-                <p class="text-slate-600 mt-0.5">Fly directly to ANY regional sector tile globally.</p>
-              </div>
-            </li>
-            <li class="flex items-center gap-3 bg-slate-50 p-2.5 rounded-xl border border-slate-200">
-              <span class="text-xl bg-white p-1.5 rounded-lg border border-slate-200 shadow-sm">☣️</span>
-              <div>
-                <span class="font-bold text-rose-800">D - Deploy / Early Warning:</span>
-                <p class="text-slate-600 mt-0.5">Shield a region or inspect upcoming AI deployment draws.</p>
-              </div>
-            </li>
-            <li class="flex items-center gap-3 bg-slate-50 p-2.5 rounded-xl border border-slate-200">
-              <span class="text-xl bg-white p-1.5 rounded-lg border border-slate-200 shadow-sm">📁</span>
-              <div>
-                <span class="font-bold text-amber-800">E - Collect Evidence:</span>
-                <p class="text-slate-600 mt-0.5">Extract 1 harm die from current sector into your personal evidence stash.</p>
-              </div>
-            </li>
-            <li class="flex items-center gap-3 bg-slate-50 p-2.5 rounded-xl border border-slate-200">
-              <span class="text-xl bg-white p-1.5 rounded-lg border border-slate-200 shadow-sm">💉</span>
-              <div>
-                <span class="font-bold text-emerald-800">T - Treat Harm:</span>
-                <p class="text-slate-600 mt-0.5">Return 1 harm die from current sector back into the cloth AI Bag.</p>
-              </div>
-            </li>
-            <li class="flex items-center gap-3 bg-slate-50 p-2.5 rounded-xl border border-slate-200">
-              <span class="text-xl bg-white p-1.5 rounded-lg border border-slate-200 shadow-sm">🚁</span>
-              <div>
-                <span class="font-bold text-purple-800">C - Convene:</span>
-                <p class="text-slate-600 mt-0.5">Move another player pawn directly into your sector for joint summit tasks.</p>
-              </div>
-            </li>
-            <li class="flex items-center gap-3 bg-slate-50 p-2.5 rounded-xl border border-slate-200">
-              <span class="text-xl bg-white p-1.5 rounded-lg border border-slate-200 shadow-sm">⚙️</span>
-              <div>
-                <span class="font-bold text-teal-800">R - Resource:</span>
-                <p class="text-slate-600 mt-0.5">Slow down the deployment track by 1 step or build sandbox safety barriers.</p>
-              </div>
-            </li>
-          </ul>
-        </div>
-
-        <!-- HARM DICE PILLARS -->
-        <div class="glass-card p-5 space-y-4">
-          <h3 class="text-base font-heading font-bold text-indigo-800 border-b border-slate-200 pb-2">🎲 4 SYSTEMIC HARM PILLARS</h3>
+          <h3 class="text-base font-heading font-bold text-orange-800 border-b border-slate-200 pb-2">🎲 ACTION DICE LEGEND</h3>
           <ul class="space-y-3 text-xs">
-            <li class="bg-rose-50 p-3 rounded-xl border-l-4 border-l-rose-500 border border-rose-200">
-              <h4 class="font-bold text-rose-800 text-sm flex items-center gap-1.5">💖 DISCRIMINATION</h4>
-              <p class="text-rose-900 mt-1">Algorithmic bias in hiring, credit scoring, legal sentencing, and resource allocation.</p>
+            <li class="flex items-start gap-3 bg-slate-50 p-3 rounded-xl border border-slate-200">
+              <span class="text-xl bg-white p-2 rounded-lg border border-slate-200 shadow-sm leading-none">🏘️</span>
+              <div>
+                <span class="font-bold text-orange-800 text-sm">L – Share Locally</span>
+                <p class="text-slate-600 mt-0.5">Move player pawn to an adjacent regional sector (Sectors 1–5).</p>
+              </div>
             </li>
-            <li class="bg-amber-50 p-3 rounded-xl border-l-4 border-l-amber-500 border border-amber-200">
-              <h4 class="font-bold text-amber-800 text-sm flex items-center gap-1.5">💧 EMOTIONAL DEPENDENCY</h4>
-              <p class="text-amber-900 mt-1">Parasocial chatbot attachment, psychological reliance, and affective manipulation.</p>
+
+            <li class="flex items-start gap-3 bg-slate-50 p-3 rounded-xl border border-slate-200">
+              <span class="text-xl bg-white p-2 rounded-lg border border-slate-200 shadow-sm leading-none">🌐</span>
+              <div>
+                <span class="font-bold text-sky-800 text-sm">I – Share Internationally</span>
+                <p class="text-slate-600 mt-0.5">Fly directly to ANY of the 5 regional sectors globally.</p>
+              </div>
             </li>
-            <li class="bg-purple-50 p-3 rounded-xl border-l-4 border-l-purple-500 border border-purple-200">
-              <h4 class="font-bold text-purple-800 text-sm flex items-center gap-1.5">🔮 ALIENATION</h4>
-              <p class="text-purple-900 mt-1">Erosion of social cohesion, labor displacement, and loss of human agency.</p>
+
+            <li class="flex items-start gap-3 bg-slate-50 p-3 rounded-xl border border-slate-200">
+              <span class="text-xl bg-white p-2 rounded-lg border border-slate-200 shadow-sm leading-none">📁</span>
+              <div>
+                <span class="font-bold text-amber-800 text-sm">E – Collect Evidence</span>
+                <p class="text-slate-600 mt-0.5">Extract 1 harm die from the current sector into your personal & team evidence stash.</p>
+              </div>
             </li>
-            <li class="bg-sky-50 p-3 rounded-xl border-l-4 border-l-sky-500 border border-sky-200">
-              <h4 class="font-bold text-sky-800 text-sm flex items-center gap-1.5">⚡ DISINFORMATION</h4>
-              <p class="text-sky-900 mt-1">Synthetic media floods, deepfakes, hallucinated facts, and institutional trust collapse.</p>
+
+            <li class="flex items-start gap-3 bg-slate-50 p-3 rounded-xl border border-slate-200">
+              <span class="text-xl bg-white p-2 rounded-lg border border-slate-200 shadow-sm leading-none">⚡</span>
+              <div>
+                <span class="font-bold text-indigo-800 text-sm">D – Deploy</span>
+                <p class="text-slate-600 mt-0.5">Deploy early warning monitoring or place sandbox safety shields in current sector.</p>
+              </div>
+            </li>
+
+            <li class="flex items-start gap-3 bg-slate-50 p-3 rounded-xl border border-slate-200">
+              <span class="text-xl bg-white p-2 rounded-lg border border-slate-200 shadow-sm leading-none">
+                <!-- IV Bag SVG -->
+                <svg class="w-6 h-6 text-rose-600" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>
+              </span>
+              <div>
+                <span class="font-bold text-rose-800 text-sm">T – Treat (IV Bag Protocol)</span>
+                <p class="text-slate-600 mt-0.5">Treat and return harm dice from current sector back into the cloth AI Bag reserve.</p>
+              </div>
+            </li>
+
+            <li class="flex items-start gap-3 bg-slate-50 p-3 rounded-xl border border-slate-200">
+              <span class="text-xl bg-white p-2 rounded-lg border border-slate-200 shadow-sm leading-none">
+                <!-- 3 Human Bodies SVG -->
+                <svg class="w-6 h-6 text-indigo-600" fill="currentColor" viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+              </span>
+              <div>
+                <span class="font-bold text-purple-800 text-sm">C – Convene (3 Human Bodies)</span>
+                <p class="text-slate-600 mt-0.5">Gather and convene player pawns into the same sector for joint summits or evidence transfers.</p>
+              </div>
+            </li>
+
+            <li class="flex items-start gap-3 bg-slate-50 p-3 rounded-xl border border-slate-200">
+              <span class="text-xl bg-white p-2 rounded-lg border border-slate-200 shadow-sm leading-none">⚙️</span>
+              <div>
+                <span class="font-bold text-teal-800 text-sm">R – Resources</span>
+                <p class="text-slate-600 mt-0.5">Convert active deployment dice directly into sandbox events or slow down track step advancement.</p>
+              </div>
             </li>
           </ul>
         </div>
 
-      </div>
+        <!-- SPECIAL PLUS FOR REGULATOR & HARMS -->
+        <div class="space-y-6">
 
-    </section>
-
-    <!-- ========================================== -->
-    <!-- SECTION 5: GITHUB DEPLOYMENT GUIDE -->
-    <!-- ========================================== -->
-    <section id="section-github" class="hidden space-y-6">
-
-      <div class="glass-card p-5 border-l-4 border-l-emerald-500">
-        <h2 class="text-2xl font-heading font-bold text-slate-900">🚀 STEP-BY-STEP GITHUB PAGES DEPLOYMENT GUIDE</h2>
-        <p class="text-xs text-slate-500 mt-1">
-          Follow these 5 simple steps to host and publish your live web app for free.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-
-        <div class="glass-card p-5 space-y-4 text-xs">
-          <div class="border-b border-slate-200 pb-2">
-            <span class="px-2 py-0.5 bg-emerald-100 text-emerald-800 border border-emerald-200 font-mono font-bold rounded">STEPS 1 & 2</span>
-            <h3 class="text-base font-heading font-bold text-slate-900 mt-2">1. Create Repository & Index File</h3>
+          <!-- SPECIAL PLUS CARD -->
+          <div class="glass-card p-5 border-l-4 border-l-purple-600 bg-purple-50/40 space-y-3">
+            <div class="flex items-center justify-between border-b border-purple-200 pb-2">
+              <h3 class="text-base font-heading font-bold text-purple-900 flex items-center gap-2">
+                <span>⚖️ SPECIAL PLUS FOR REGULATOR</span>
+              </h3>
+              <span class="px-2 py-0.5 bg-purple-200 text-purple-900 font-mono text-[10px] font-bold rounded">ENHANCED ROLE</span>
+            </div>
+            <p class="text-xs text-purple-950 leading-relaxed font-medium">
+              The Regulator / Operator possesses extraordinary statutory enforcement powers:
+            </p>
+            <ul class="list-disc list-inside text-xs text-purple-900 space-y-1.5 font-medium">
+              <li><strong>Invoke Regulatory Action Card:</strong> Can invoke a resourced Regulatory Action card at any time without waiting for full turn turnarounds.</li>
+              <li><strong>Convert Deployment to Sandbox:</strong> Convert deployment dice directly into contained sandbox events via Resources (R).</li>
+              <li><strong>Enhanced Treatment Multipliers:</strong> Perform amplified treatment operations (2xT, 3xT) on dense harm clusters.</li>
+            </ul>
           </div>
-          <ol class="list-decimal list-inside space-y-2.5 text-slate-700 font-medium">
-            <li>Log into your account at <a href="https://github.com" target="_blank" class="text-sky-700 hover:underline font-bold">GitHub.com</a>.</li>
-            <li>Click the <strong class="text-slate-900">"+"</strong> icon in the upper right and select <strong class="text-slate-900">New repository</strong>.</li>
-            <li>Name your repository <code class="bg-slate-100 px-1.5 py-0.5 rounded text-indigo-700 font-mono">singularity-game</code>.</li>
-            <li>Select <strong class="text-slate-900">Public</strong>, check <strong class="text-slate-900">Add a README file</strong>, and click <strong class="text-slate-900">Create repository</strong>.</li>
-            <li>Click <strong class="text-slate-900">Add file ➔ Create new file</strong>, name it exactly <code class="bg-slate-100 px-1.5 py-0.5 rounded text-indigo-700 font-mono">index.html</code>.</li>
-            <li>Paste all the single-file code from this editor into the box and click <strong class="text-slate-900">Commit changes...</strong></li>
-          </ol>
-        </div>
 
-        <div class="glass-card p-5 space-y-4 text-xs">
-          <div class="border-b border-slate-200 pb-2">
-            <span class="px-2 py-0.5 bg-sky-100 text-sky-800 border border-sky-200 font-mono font-bold rounded">STEPS 3, 4 & 5</span>
-            <h3 class="text-base font-heading font-bold text-slate-900 mt-2">2. Enable Pages & Access Site</h3>
+          <!-- 4 SYSTEMIC HARM PILLARS -->
+          <div class="glass-card p-5 space-y-3">
+            <h3 class="text-base font-heading font-bold text-slate-800 border-b border-slate-200 pb-2">🎲 4 SYSTEMIC HARM PILLARS</h3>
+            <ul class="space-y-2.5 text-xs">
+              <li class="bg-rose-50 p-2.5 rounded-xl border-l-4 border-l-rose-500 border border-rose-200">
+                <span class="font-bold text-rose-800">💖 Discrimination:</span> Algorithmic bias in scoring, hiring, and resource distribution.
+              </li>
+              <li class="bg-amber-50 p-2.5 rounded-xl border-l-4 border-l-amber-500 border border-amber-200">
+                <span class="font-bold text-amber-800">💧 Emotional Dependency:</span> Parasocial attachment, psychological reliance, and affective exploitation.
+              </li>
+              <li class="bg-purple-50 p-2.5 rounded-xl border-l-4 border-l-purple-500 border border-purple-200">
+                <span class="font-bold text-purple-800">🔮 Alienation:</span> Erosion of human social cohesion and loss of agency.
+              </li>
+              <li class="bg-sky-50 p-2.5 rounded-xl border-l-4 border-l-sky-500 border border-sky-200">
+                <span class="font-bold text-sky-800">⚡ Disinformation:</span> Synthetic media floods, hallucinations, and trust collapse.
+              </li>
+            </ul>
           </div>
-          <ol class="list-decimal list-inside space-y-2.5 text-slate-700 font-medium">
-            <li>In your repository, click <strong class="text-slate-900">⚙️ Settings</strong> tab at top.</li>
-            <li>On the left sidebar, click <strong class="text-slate-900">Pages</strong> under Code and automation.</li>
-            <li>Under <strong class="text-slate-900">Build and deployment ➔ Source</strong>, select <code class="bg-slate-100 px-1.5 py-0.5 rounded font-mono">Deploy from a branch</code>.</li>
-            <li>Under <strong class="text-slate-900">Branch</strong>, select <code class="bg-slate-100 px-1.5 py-0.5 rounded font-mono">main</code> (or <code class="bg-slate-100 px-1.5 py-0.5 rounded font-mono">master</code>) and folder <code class="bg-slate-100 px-1.5 py-0.5 rounded font-mono">/(root)</code>, then click <strong class="text-slate-900">Save</strong>.</li>
-            <li>Wait 1–2 minutes, then refresh. GitHub will display your live site link:</li>
-          </ol>
-          <div class="bg-sky-50 p-3 rounded-xl border border-sky-200 font-mono text-[11px] text-sky-800 break-all font-semibold">
-            https://&lt;your-github-username&gt;.github.io/singularity-game/
-          </div>
+
         </div>
 
       </div>
@@ -600,7 +618,7 @@
 
   <!-- MODAL: INTERNATIONAL CONSENSUS SUMMIT -->
   <div id="summit-modal" class="fixed inset-0 bg-slate-900/40 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
-    <div class="glass-card max-w-xl w-full p-6 space-y-5 animate-modal border-sky-300 bg-white shadow-2xl">
+    <div class="glass-card max-w-xl w-full p-6 space-y-5 animate-modal border-orange-300 bg-white shadow-2xl">
       <div class="flex justify-between items-center border-b border-slate-200 pb-3">
         <div class="flex items-center gap-2">
           <span class="text-2xl">🏛️</span>
@@ -610,7 +628,7 @@
       </div>
 
       <p class="text-xs text-slate-600 leading-relaxed">
-        Pool all collected Evidence dice across all players! Select 1 target Harm pillar to solve globally. Roll total <strong>&gt;= 13</strong> on 4d6 (+2 bonus) to ratify binding international treaty!
+        Pool all collected Evidence dice across all 7 stakeholders! Select 1 target Harm pillar to solve globally. Roll total <strong>&gt;= 13</strong> on 4d6 (+2 bonus) to ratify binding international treaty!
       </p>
 
       <!-- Harm Selection -->
@@ -635,7 +653,7 @@
           🎲 Roll Summit Consensus (4D6 + 2 Bonus)
         </button>
 
-        <div id="summit-result-text" class="text-center font-mono text-sm font-bold text-sky-800 min-h-[24px]">
+        <div id="summit-result-text" class="text-center font-mono text-sm font-bold text-orange-800 min-h-[24px]">
           Ready to convene summit...
         </div>
       </div>
@@ -652,18 +670,18 @@
         CRITICAL HARM SPILLOVER!
       </h3>
       <p id="explosion-desc" class="text-xs text-slate-600 leading-relaxed bg-rose-50/60 p-3 rounded-xl border border-rose-200">
-        More than 3 harm dice of the same color gathered! Systemic harm spilled over into adjacent regions, accelerating AI Deployment by +1 Step!
+        More than 3 harm dice gathered in a single regional sector! Systemic harm spilled over into adjacent sectors, accelerating AI Deployment Track by +1 Step!
       </p>
       <button onclick="closeModal('explosion-modal')" class="w-full btn-command bg-rose-600 hover:bg-rose-700 text-white border-rose-600 py-2.5 text-xs font-bold uppercase tracking-wider rounded-xl shadow-sm">
-        Acknowledge & Contain Damage 🛡️
+        Acknowledge & Contain Spillover 🛡️
       </button>
     </div>
   </div>
 
   <!-- FOOTER -->
   <footer class="bg-white border-t border-slate-200 p-4 text-center text-xs text-slate-500 space-y-1 font-mono mt-auto">
-    <p>© 2026 Singularity AI Governance Cooperative • Executive Strategic Board Simulator</p>
-    <p class="text-[11px] text-slate-400">Designed with modern, human-friendly glassmorphic aesthetics and structured tabletop board mechanics.</p>
+    <p>© 2026 Singularity: The Prevention • AI Governance Cooperative Strategy Simulator</p>
+    <p class="text-[11px] text-slate-400">Light warm theme • 5 Regional Sectors • Enhanced Regulator Special Plus Capabilities</p>
   </footer>
 
   <!-- JAVASCRIPT GAME LOGIC -->
@@ -734,51 +752,125 @@
     }
 
     /* ===================================================================
-       GAME STATE & DATA STRUCTURES
+       GAME STATE & 7 CHARACTER ROLES DATA
        =================================================================== */
     const ROLES = [
-      { id: 'ngo', name: 'NGO COALITION', color: 'border-t-emerald-500', textColor: 'text-emerald-700', pawnSymbol: '♟️', diceCount: 6, power: 'Free Evidence transfer to allies in same region.', badgeBg: 'bg-emerald-50 text-emerald-700 border-emerald-200' },
-      { id: 'cert', name: 'CERTIFICATION BODY', color: 'border-t-sky-500', textColor: 'text-sky-700', pawnSymbol: '🛡️', diceCount: 6, power: 'When entering area, put 1 die of each colour with 2+ dice into the bag.', badgeBg: 'bg-sky-50 text-sky-700 border-sky-200' },
-      { id: 'lab', name: 'AI METROLOGY LAB', color: 'border-t-amber-500', textColor: 'text-amber-800', pawnSymbol: '🔬', diceCount: 6, power: 'Add +2 to total of any roll to agree treatment standard in your area.', badgeBg: 'bg-amber-50 text-amber-800 border-amber-200' },
-      { id: 'standards', name: 'INTL STANDARDS BODY', color: 'border-t-indigo-500', textColor: 'text-indigo-700', pawnSymbol: '📜', diceCount: 6, power: 'Move other pawns in area to any area for free. Place Convene on card.', badgeBg: 'bg-indigo-50 text-indigo-700 border-indigo-200' },
-      { id: 'citizen', name: 'CITIZEN ASSEMBLY', color: 'border-t-orange-500', textColor: 'text-orange-800', pawnSymbol: '✊', diceCount: 7, power: 'Has 7 dice. First deployment rolled each turn does not advance rate marker.', badgeBg: 'bg-orange-50 text-orange-800 border-orange-200' },
-      { id: 'regulator', name: 'REGULATOR / OPERATOR', color: 'border-t-rose-500', textColor: 'text-rose-700', pawnSymbol: '⚖️', diceCount: 6, power: 'Invoke a resourced Regulatory Action card at any time.', badgeBg: 'bg-rose-50 text-rose-700 border-rose-200' },
-      { id: 'deployer', name: 'AI DEPLOYER', color: 'border-t-teal-500', textColor: 'text-teal-700', pawnSymbol: '🚀', diceCount: 6, power: 'Spend a Resource to set 1 deployment die in area and place in sandbox.', badgeBg: 'bg-teal-50 text-teal-700 border-teal-200' }
+      { 
+        id: 'regulator', 
+        name: 'REGULATOR / OPERATOR', 
+        color: 'border-t-purple-600', 
+        textColor: 'text-purple-700', 
+        pawnSymbol: '⚖️', 
+        diceCount: 6, 
+        power: 'SPECIAL PLUS: Can invoke resourced Regulatory Action card at any time, convert deployment dice to sandbox events via Resources (R), and perform enhanced 2xT/3xT treatment.', 
+        badgeBg: 'bg-purple-100 text-purple-800 border-purple-300',
+        hasSpecialPlus: true 
+      },
+      { 
+        id: 'ngo', 
+        name: 'NGO COALITION', 
+        color: 'border-t-emerald-500', 
+        textColor: 'text-emerald-700', 
+        pawnSymbol: '♟️', 
+        diceCount: 6, 
+        power: 'Free Evidence transfer to allies in the same regional sector.', 
+        badgeBg: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+        hasSpecialPlus: false 
+      },
+      { 
+        id: 'deployer', 
+        name: 'AI DEPLOYER', 
+        color: 'border-t-teal-500', 
+        textColor: 'text-teal-700', 
+        pawnSymbol: '🚀', 
+        diceCount: 6, 
+        power: 'Spend a Resource (R) to set 1 deployment die in area and place directly into sandbox containment.', 
+        badgeBg: 'bg-teal-50 text-teal-700 border-teal-200',
+        hasSpecialPlus: false 
+      },
+      { 
+        id: 'lab', 
+        name: 'AI METROLOGY LAB', 
+        color: 'border-t-amber-500', 
+        textColor: 'text-amber-800', 
+        pawnSymbol: '🔬', 
+        diceCount: 6, 
+        power: 'Add +2 to total of any roll to agree treatment standards in current sector.', 
+        badgeBg: 'bg-amber-50 text-amber-800 border-amber-200',
+        hasSpecialPlus: false 
+      },
+      { 
+        id: 'standards', 
+        name: 'INTL STANDARDS BODY', 
+        color: 'border-t-indigo-500', 
+        textColor: 'text-indigo-700', 
+        pawnSymbol: '📜', 
+        diceCount: 6, 
+        power: 'Move other pawns in current area to any area for free. Place Convene on card.', 
+        badgeBg: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+        hasSpecialPlus: false 
+      },
+      { 
+        id: 'cert', 
+        name: 'CERTIFICATION BODY', 
+        color: 'border-t-sky-500', 
+        textColor: 'text-sky-700', 
+        pawnSymbol: '🛡️', 
+        diceCount: 6, 
+        power: 'When entering area with 2+ dice of any color, return 1 die back into bag reserve.', 
+        badgeBg: 'bg-sky-50 text-sky-700 border-sky-200',
+        hasSpecialPlus: false 
+      },
+      { 
+        id: 'citizen', 
+        name: 'CITIZEN ASSEMBLY', 
+        color: 'border-t-orange-500', 
+        textColor: 'text-orange-800', 
+        pawnSymbol: '✊', 
+        diceCount: 7, 
+        power: 'Has 7 action dice pool. First deployment rolled each turn does not advance rate marker.', 
+        badgeBg: 'bg-orange-50 text-orange-800 border-orange-200',
+        hasSpecialPlus: false 
+      }
     ];
 
     const HARMS = [
-      { id: 'discrimination', name: 'Discrimination', colorName: 'Rose Red', bgClass: 'bg-rose-50 text-rose-700 border-rose-200', textClass: 'text-rose-700', icon: '💖' },
-      { id: 'dependency', name: 'Emotional Dependency', colorName: 'Warm Amber', bgClass: 'bg-amber-50 text-amber-800 border-amber-200', textClass: 'text-amber-800', icon: '💧' },
-      { id: 'alienation', name: 'Alienation', colorName: 'Violet Purple', bgClass: 'bg-purple-50 text-purple-700 border-purple-200', textClass: 'text-purple-700', icon: '🔮' },
-      { id: 'disinformation', name: 'Disinformation', colorName: 'Sky Cyan', bgClass: 'bg-sky-50 text-sky-700 border-sky-200', textClass: 'text-sky-700', icon: '⚡' }
+      { id: 'discrimination', name: 'Discrimination', bgClass: 'bg-rose-50 text-rose-700 border-rose-200', icon: '💖' },
+      { id: 'dependency', name: 'Emotional Dependency', bgClass: 'bg-amber-50 text-amber-800 border-amber-200', icon: '💧' },
+      { id: 'alienation', name: 'Alienation', bgClass: 'bg-purple-50 text-purple-700 border-purple-200', icon: '🔮' },
+      { id: 'disinformation', name: 'Disinformation', bgClass: 'bg-sky-50 text-sky-700 border-sky-200', icon: '⚡' }
     ];
 
     const ACTION_ICONS = {
-      'L': { name: 'Local Move (Boat)', icon: '⛵' },
-      'I': { name: 'International Move (Plane)', icon: '✈️' },
-      'D': { name: 'Deploy / Shield', icon: '☣️' },
-      'E': { name: 'Collect Evidence', icon: '📁' },
-      'T': { name: 'Treat Harm', icon: '💉' },
-      'C': { name: 'Convene Ally', icon: '🚁' },
-      'R': { name: 'Resource', icon: '⚙️' }
+      'L': { name: 'Share Locally (L)', icon: '🏘️' },
+      'I': { name: 'Share Internationally (I)', icon: '🌐' },
+      'E': { name: 'Collect Evidence (E)', icon: '📁' },
+      'D': { name: 'Deploy (D)', icon: '⚡' },
+      'T': { name: 'Treat (T)', icon: '🩸' },
+      'C': { name: 'Convene (C)', icon: '🫂' },
+      'R': { name: 'Resources (R)', icon: '⚙️' }
     };
 
+    // EXACTLY 5 REGIONAL SECTORS (NO 6TH REGION OR GLOBAL HUB)
     let gameState = {
       trackStep: 1,
       bagCount: 24,
       activePlayerIndex: 0,
       players: [
-        { roleId: 'ngo', location: 0, evidence: [] },
-        { roleId: 'cert', location: 1, evidence: [] },
-        { roleId: 'standards', location: 5, evidence: [] }
+        { roleId: 'regulator', location: 0, evidence: [] },
+        { roleId: 'ngo', location: 1, evidence: [] },
+        { roleId: 'deployer', location: 2, evidence: [] },
+        { roleId: 'lab', location: 3, evidence: [] },
+        { roleId: 'standards', location: 4, evidence: [] },
+        { roleId: 'cert', location: 0, evidence: [] },
+        { roleId: 'citizen', location: 1, evidence: [] }
       ],
       regions: [
-        { id: 0, name: 'North America', d6: 1, color: 'border-l-sky-500', harms: ['discrimination', 'disinformation'], adj: [1, 4, 5] },
-        { id: 1, name: 'South America', d6: 2, color: 'border-l-emerald-500', harms: ['dependency'], adj: [0, 3, 5] },
-        { id: 2, name: 'Europe', d6: 3, color: 'border-l-indigo-500', harms: ['alienation'], adj: [3, 4, 5] },
-        { id: 3, name: 'Africa', d6: 4, color: 'border-l-amber-500', harms: [], adj: [1, 2, 5] },
-        { id: 4, name: 'Asia-Pacific', d6: 5, color: 'border-l-rose-500', harms: ['discrimination'], adj: [0, 2, 5] },
-        { id: 5, name: 'Global Hub', d6: 6, color: 'border-l-teal-500', harms: [], adj: [0, 1, 2, 3, 4] }
+        { id: 0, name: 'Sector 1', d6: 1, color: 'border-l-orange-500', harms: ['discrimination', 'disinformation'], adj: [1, 4] },
+        { id: 1, name: 'Sector 2', d6: 2, color: 'border-l-emerald-500', harms: ['dependency'], adj: [0, 2] },
+        { id: 2, name: 'Sector 3', d6: 3, color: 'border-l-indigo-500', harms: ['alienation'], adj: [1, 3] },
+        { id: 3, name: 'Sector 4', d6: 4, color: 'border-l-amber-500', harms: [], adj: [2, 4] },
+        { id: 4, name: 'Sector 5', d6: '5-6', color: 'border-l-sky-500', harms: ['discrimination'], adj: [0, 3] }
       ],
       consensus: {
         discrimination: false,
@@ -802,9 +894,9 @@
       renderPitchSlide(0);
     };
 
-    // TAB SWITCHING LOGIC
+    // SWITCH BETWEEN 4 CLEAN TABS
     function switchTab(tabId) {
-      ['game', 'pitch', 'roles', 'rules', 'github'].forEach(id => {
+      ['game', 'pitch', 'roles', 'rules'].forEach(id => {
         const sec = document.getElementById(`section-${id}`);
         if (sec) sec.classList.add('hidden');
         
@@ -819,11 +911,11 @@
 
       const activeBtn = document.getElementById(`tab-${tabId}`);
       if (activeBtn) {
-        activeBtn.className = "px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all bg-white text-sky-700 shadow-sm border border-slate-200 font-bold";
+        activeBtn.className = "px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all bg-white text-orange-700 shadow-sm border border-slate-200 font-bold";
       }
     }
 
-    // RENDER DEPLOYMENT PIPELINE TRACK NODES
+    // RENDER 16 TRACK NODES
     function renderTrackNodes() {
       const container = document.getElementById('track-nodes-container');
       container.innerHTML = '';
@@ -832,14 +924,13 @@
         const node = document.createElement('div');
         node.className = `h-9 rounded-lg border flex items-center justify-center font-mono text-xs font-bold transition-all ${
           isActive 
-            ? 'bg-sky-600 text-white border-sky-400 shadow-md scale-105 z-10' 
+            ? 'bg-orange-600 text-white border-orange-400 shadow-md scale-105 z-10' 
             : 'bg-slate-100 text-slate-600 border-slate-200'
         }`;
         node.innerText = i === 16 ? '💥16' : i;
         container.appendChild(node);
       }
 
-      // Rate multiplier calculation
       let rate = 2;
       if (gameState.trackStep >= 5) rate = 3;
       if (gameState.trackStep >= 9) rate = 4;
@@ -848,7 +939,7 @@
       document.getElementById('bag-count').innerText = `${gameState.bagCount} DICE`;
     }
 
-    // RENDER 6 REGIONAL SECTOR CARDS
+    // RENDER EXACTLY 5 REGIONAL SECTOR CARDS
     function renderRegions() {
       const container = document.getElementById('regions-container');
       container.innerHTML = '';
@@ -857,14 +948,12 @@
         const tile = document.createElement('div');
         tile.className = `glass-card glass-card-interactive p-4 border-l-4 ${region.color} space-y-3 relative`;
 
-        // Players present
         const playersHere = gameState.players.filter(p => p.location === region.id);
         let playerPawnsHtml = playersHere.map(p => {
           const role = ROLES.find(r => r.id === p.roleId);
-          return `<span class="w-6.5 h-6.5 rounded-lg border ${role.badgeBg} inline-flex items-center justify-center text-xs shadow-sm font-bold" title="${role.name}">${role.pawnSymbol}</span>`;
+          return `<span class="w-7 h-7 rounded-lg border ${role.badgeBg} inline-flex items-center justify-center text-xs shadow-sm font-bold" title="${role.name}">${role.pawnSymbol}</span>`;
         }).join(' ');
 
-        // Harms present
         let harmsHtml = region.harms.map(hId => {
           const h = HARMS.find(item => item.id === hId);
           return `<span class="px-2 py-1 rounded-md border text-xs flex items-center gap-1 font-mono font-bold ${h.bgClass}" title="${h.name}">${h.icon}</span>`;
@@ -877,17 +966,17 @@
               <span class="font-mono text-[10px] bg-slate-100 text-slate-600 border border-slate-200 px-2 py-0.5 rounded font-semibold">d6: ${region.d6}</span>
             </div>
 
-            <!-- Stakeholders present -->
+            <!-- Stakeholders Present -->
             <div class="flex items-center gap-1.5 mb-2.5 bg-slate-50/80 px-2.5 py-1.5 rounded-lg border border-slate-200">
               <span class="text-[10px] font-mono text-slate-500 font-semibold">PAWNS:</span>
-              <div class="flex flex-wrap gap-1">${playerPawnsHtml || '<span class="text-[10px] italic text-slate-400">None</span>'}</div>
+              <div class="flex flex-wrap gap-1">${playerPawnsHtml || '<span class="text-[10px] italic text-slate-400">Empty</span>'}</div>
             </div>
 
-            <!-- Harm Dice present -->
+            <!-- Harm Dice Present -->
             <div>
               <div class="text-[10px] font-mono text-slate-500 mb-1 flex justify-between font-medium">
                 <span>HARM DICE (${region.harms.length}/3 MAX):</span>
-                ${region.harms.length >= 3 ? '<span class="text-rose-600 font-bold animate-pulse">⚠️ DANGER</span>' : ''}
+                ${region.harms.length >= 3 ? '<span class="text-rose-600 font-bold animate-pulse">⚠️ SPILLOVER RISK</span>' : ''}
               </div>
               <div class="flex flex-wrap gap-1.5 min-h-[38px] items-center bg-slate-50 p-2 rounded-lg border border-slate-200">
                 ${harmsHtml || '<span class="text-xs text-slate-400 italic">Sector Clear</span>'}
@@ -899,7 +988,7 @@
       });
     }
 
-    // RENDER ACTIVE PLAYER CARD
+    // RENDER ACTIVE PLAYER CARD & SPECIAL PLUS HIGHLIGHT
     function renderActivePlayer() {
       const activePlayer = gameState.players[gameState.activePlayerIndex];
       const role = ROLES.find(r => r.id === activePlayer.roleId);
@@ -912,9 +1001,19 @@
       document.getElementById('player-location-text').innerText = `${region.name} (d6: ${region.d6})`;
       document.getElementById('player-power-text').innerText = role.power;
       document.getElementById('player-evidence-stash').innerText = `${activePlayer.evidence.length} Collected (${activePlayer.evidence.map(e => e.toUpperCase()).join(', ') || 'None'})`;
+
+      const specialTag = document.getElementById('special-plus-tag');
+      const regulatorBtn = document.getElementById('regulator-special-container');
+      if (role.id === 'regulator') {
+        specialTag.classList.remove('hidden');
+        regulatorBtn.classList.remove('opacity-50');
+      } else {
+        specialTag.classList.add('hidden');
+        regulatorBtn.classList.add('opacity-50');
+      }
     }
 
-    // RENDER CONSENSUS PILLARS MATRIX
+    // RENDER CONSENSUS PILLARS
     function renderConsensusPillars() {
       const container = document.getElementById('consensus-pillars');
       container.innerHTML = '';
@@ -943,7 +1042,7 @@
     function rollPlayerDice() {
       const activePlayer = gameState.players[gameState.activePlayerIndex];
       const role = ROLES.find(r => r.id === activePlayer.roleId);
-      const faces = ['L', 'I', 'D', 'E', 'T', 'C', 'R'];
+      const faces = ['L', 'I', 'E', 'D', 'T', 'C', 'R'];
       
       gameState.rolledDice = [];
       for (let i = 0; i < role.diceCount; i++) {
@@ -966,7 +1065,7 @@
 
       gameState.rolledDice.forEach((face, index) => {
         const die = document.createElement('button');
-        die.className = 'w-9 h-9 bg-white border border-slate-300 hover:border-sky-500 font-mono text-base font-bold rounded-lg flex items-center justify-center text-sky-800 hover:bg-sky-50 transition-all shadow-sm';
+        die.className = 'w-9 h-9 bg-white border border-slate-300 hover:border-orange-500 font-mono text-base font-bold rounded-lg flex items-center justify-center text-orange-800 hover:bg-orange-50 transition-all shadow-sm';
         die.innerText = ACTION_ICONS[face].icon;
         die.title = `${ACTION_ICONS[face].name} (Click to spend)`;
         die.onclick = () => spendDie(index);
@@ -979,13 +1078,13 @@
       renderRolledDice();
     }
 
-    // ACTION: MOVE SECTOR
-    function actionMoveModal() {
+    // ACTION: SHARE LOCALLY (L)
+    function actionShareLocally() {
       const activePlayer = gameState.players[gameState.activePlayerIndex];
       const currentRegion = gameState.regions[activePlayer.location];
-      const targetRegionId = prompt(`SELECT TARGET SECTOR:\nCurrent: ${currentRegion.name}\nEnter sector d6 (1-6):\n1: North America, 2: South America, 3: Europe, 4: Africa, 5: Asia-Pacific, 6: Global Hub`);
+      const targetRegionId = prompt(`[L - Share Locally] Move to adjacent sector:\nCurrent: ${currentRegion.name}\nEnter sector number (1 to 5):`);
       
-      if (targetRegionId && targetRegionId >= 1 && targetRegionId <= 6) {
+      if (targetRegionId && targetRegionId >= 1 && targetRegionId <= 5) {
         activePlayer.location = parseInt(targetRegionId) - 1;
         playSound('treat');
         renderRegions();
@@ -993,31 +1092,26 @@
       }
     }
 
-    // ACTION: TREAT HARM
-    function actionTreatHarm() {
+    // ACTION: SHARE INTERNATIONALLY (I)
+    function actionShareInternationally() {
       const activePlayer = gameState.players[gameState.activePlayerIndex];
-      const region = gameState.regions[activePlayer.location];
-
-      if (region.harms.length === 0) {
-        alert("No harm dice in this sector to treat!");
-        return;
+      const targetRegionId = prompt(`[I - Share Internationally] Fly directly to ANY sector:\nEnter sector number (1 to 5):`);
+      
+      if (targetRegionId && targetRegionId >= 1 && targetRegionId <= 5) {
+        activePlayer.location = parseInt(targetRegionId) - 1;
+        playSound('treat');
+        renderRegions();
+        renderActivePlayer();
       }
-
-      const removed = region.harms.pop();
-      gameState.bagCount = Math.min(32, gameState.bagCount + 1);
-      playSound('treat');
-      renderRegions();
-      renderTrackNodes();
-      alert(`💉 Successfully treated 1 ${removed.toUpperCase()} harm die! Returned die to bag reserve.`);
     }
 
-    // ACTION: GATHER EVIDENCE
+    // ACTION: COLLECT EVIDENCE (E)
     function actionCollectEvidence() {
       const activePlayer = gameState.players[gameState.activePlayerIndex];
       const region = gameState.regions[activePlayer.location];
 
       if (region.harms.length === 0) {
-        alert("No harm dice available in this sector to collect as evidence!");
+        alert("No harm dice in this sector to collect as evidence!");
         return;
       }
 
@@ -1026,29 +1120,82 @@
       playSound('treat');
       renderRegions();
       renderActivePlayer();
-      alert(`📁 Gathered 1 ${harmCollected.toUpperCase()} Evidence die into your team stash!`);
+      alert(`📁 Gathered 1 ${harmCollected.toUpperCase()} Evidence die into team stash!`);
     }
 
-    // ACTION: CONVENE
+    // ACTION: DEPLOY (D)
+    function actionDeploy() {
+      playSound('treat');
+      alert("⚡ Deployed early warning monitoring & sandbox barriers in current sector!");
+    }
+
+    // ACTION: TREAT HARM (T)
+    function actionTreatHarm() {
+      const activePlayer = gameState.players[gameState.activePlayerIndex];
+      const role = ROLES.find(r => r.id === activePlayer.roleId);
+      const region = gameState.regions[activePlayer.location];
+
+      if (region.harms.length === 0) {
+        alert("No harm dice in this sector to treat!");
+        return;
+      }
+
+      // Regulator multiplier support (2xT)
+      let treatCount = (role.id === 'regulator') ? 2 : 1;
+      let treated = 0;
+
+      while (treatCount > 0 && region.harms.length > 0) {
+        region.harms.pop();
+        gameState.bagCount = Math.min(32, gameState.bagCount + 1);
+        treated++;
+        treatCount--;
+      }
+
+      playSound('treat');
+      renderRegions();
+      renderTrackNodes();
+      alert(`💉 IV Bag Treatment applied! Treated ${treated} harm die/dice in ${region.name}!`);
+    }
+
+    // ACTION: CONVENE (C)
     function actionConvene() {
       const activePlayer = gameState.players[gameState.activePlayerIndex];
       gameState.players.forEach(p => p.location = activePlayer.location);
       playSound('treat');
       renderRegions();
-      alert("🚁 Convened all stakeholder pawns into your regional sector!");
+      alert("🫂 Convened all stakeholder pawns into your regional sector!");
     }
 
-    // ACTION: RESOURCE
+    // ACTION: RESOURCES (R) - Convert Deployment to Sandbox
     function actionResource() {
+      const activePlayer = gameState.players[gameState.activePlayerIndex];
+      const role = ROLES.find(r => r.id === activePlayer.roleId);
+
       if (gameState.trackStep > 1) {
         gameState.trackStep -= 1;
         renderTrackNodes();
         playSound('treat');
-        alert("⚙️ Converted resources to slow down AI Deployment track by 1 step!");
+        if (role.id === 'regulator' || role.id === 'deployer') {
+          alert("⚙️ [Resource R] Converted active deployment die into contained sandbox event & slowed deployment track by -1 Step!");
+        } else {
+          alert("⚙️ [Resource R] Slowed down AI deployment track by -1 Step!");
+        }
       }
     }
 
-    // ACTION: END PLAYER TURN & AI DEPLOYMENT
+    // SPECIAL PLUS: REGULATOR ACTION CARD
+    function actionRegulatorSpecialCard() {
+      const activePlayer = gameState.players[gameState.activePlayerIndex];
+      if (activePlayer.roleId !== 'regulator') {
+        alert("Special Plus Regulator Action can only be invoked when Regulator is active!");
+        return;
+      }
+
+      playSound('fanfare');
+      alert("⚖️ [REGULATOR SPECIAL PLUS] Statutory Regulatory Enforcement Invoked!\n- Converted deployment dice into contained sandbox events\n- Granted extra IV Bag treatment action!");
+    }
+
+    // ACTION: END PLAYER TURN & AI DEPLOYMENT DRAFT
     function endPlayerTurn() {
       let rate = 2;
       if (gameState.trackStep >= 5) rate = 3;
@@ -1075,7 +1222,7 @@
       renderActivePlayer();
     }
 
-    // CASCADING SPILLOVER CHECK
+    // CASCADING HARM SPILLOVER CHECK
     function checkSpilloverExplosions() {
       gameState.regions.forEach(region => {
         if (region.harms.length > 3) {
@@ -1096,12 +1243,6 @@
 
     // CONSENSUS SUMMIT MINI-GAME
     function actionSummitModal() {
-      const activePlayer = gameState.players[gameState.activePlayerIndex];
-      if (activePlayer.location !== 5) {
-        alert("You must be located at the Global Hub (d6: 6) to convene the International Consensus Summit!");
-        return;
-      }
-
       const harmSelectionContainer = document.getElementById('summit-harm-selection');
       harmSelectionContainer.innerHTML = '';
 
@@ -1109,7 +1250,7 @@
         const solved = gameState.consensus[h.id];
         const btn = document.createElement('button');
         btn.className = `btn-command p-2.5 text-xs flex items-center justify-between ${
-          solved ? 'opacity-50 cursor-not-allowed bg-slate-100' : 'hover:border-sky-500'
+          solved ? 'opacity-50 cursor-not-allowed bg-slate-100' : 'hover:border-orange-500'
         }`;
         btn.disabled = solved;
         btn.innerHTML = `<span>${h.icon} ${h.name}</span> <span class="font-mono text-[10px] font-bold">${solved ? 'RATIFIED' : 'SELECT'}</span>`;
@@ -1128,14 +1269,14 @@
         p.evidence.forEach(e => {
           totalEvidence++;
           const item = document.createElement('span');
-          item.className = 'px-2.5 py-1 bg-white border border-slate-300 text-sky-800 font-mono text-[11px] rounded-md font-bold shadow-sm';
+          item.className = 'px-2.5 py-1 bg-white border border-slate-300 text-orange-800 font-mono text-[11px] rounded-md font-bold shadow-sm';
           item.innerText = `📁 ${e.toUpperCase()}`;
           poolContainer.appendChild(item);
         });
       });
 
       if (totalEvidence === 0) {
-        poolContainer.innerHTML = `<span class="text-xs text-rose-600 italic font-medium">No evidence collected yet. Gather evidence from regional sectors first.</span>`;
+        poolContainer.innerHTML = `<span class="text-xs text-rose-600 italic font-medium">No evidence collected yet. Gather evidence from sectors first.</span>`;
       }
 
       document.getElementById('summit-modal').classList.remove('hidden');
@@ -1155,7 +1296,7 @@
         renderConsensusPillars();
 
         if (Object.values(gameState.consensus).every(v => v === true)) {
-          alert("🏆 GLOBAL AI GOVERNANCE ACHIEVED! INTERNATIONAL TREATY FULLY RATIFIED!");
+          alert("🏆 GLOBAL AI GOVERNANCE ACHIEVED! ALL 4 HARM PILLARS RATIFIED!");
         }
       } else {
         playSound('boom');
@@ -1168,56 +1309,49 @@
     }
 
     function resetGame() {
-      if (confirm("Reset simulation engine to initial state?")) {
+      if (confirm("Reset simulation engine state?")) {
         location.reload();
       }
     }
 
     /* ===================================================================
-       SECTION 2: 3-MINUTE BRIEFING PITCH DECK
+       TAB 2: 3-MINUTE PITCH BRIEFING CAROUSEL
        =================================================================== */
     const PITCH_SLIDES = [
       {
-        title: "1. GLOBAL ASSEMBLY INITIALIZATION",
-        subtitle: "Setting Up Global Hubs & Specialist Roles",
-        content: "Setting up our 6 regional sectors across the board and choosing our specialized AI Governance Roles (NGO, Standards Body, Regulator, Metrology Lab, and Citizens). Each player brings unique dice pools and powers to tackle localized harms.",
-        speechBubble: "Welcome to Singularity! We are a cooperative team working to govern emerging AI systems before they cascade out of human control!",
-        badge: "🌍 COOPERATIVE SETUP"
+        title: "1. COOPERATIVE PREVENTIVE GOVERNANCE",
+        subtitle: "5 Regional Sectors & 7 Specialist Stakeholders",
+        content: "Setting up our 5 regional sectors (Sectors 1 to 5) across the board and choosing our 7 specialized AI Governance Roles (Regulator with Special Plus, NGO, Deployer, Metrology Lab, Standards Body, Certification Body, and Citizen Assembly).",
+        speechBubble: "Welcome to Singularity: The Prevention! We are a cooperative coalition working to prevent uncontrolled AI deployment risk!",
+        badge: "🌍 5 SECTORS SETUP"
       },
       {
-        title: "2. TACTICAL TURN EXECUTIONS",
-        subtitle: "Rolling Action Dice & Deploying Interventions",
-        content: "Roll custom action dice to fly across regional sectors (Boat/Plane), gather empirical evidence folders, treat localized harm dice with targeted interventions, and convene stakeholders into joint summit task forces.",
-        speechBubble: "Every die face represents a real governance action—from local field studies to international diplomatic flights!",
-        badge: "🎲 ACTION ENGINE"
+        title: "2. ACTION MECHANICS LEGEND",
+        subtitle: "Rolling Action Dice: L, I, E, D, T, C, R",
+        content: "Rolling action dice each turn: Share Locally (L), Share Internationally (I), Collect Evidence (E), Deploy early warning (D), Treat harms via IV Bag protocol (T), Convene allies (C), and Resources (R) to convert deployment dice to sandbox events.",
+        speechBubble: "Every die roll unlocks key governance interventions across regional sectors!",
+        badge: "🎲 ACTION LEGEND"
       },
       {
-        title: "3. INTERNATIONAL TREATY RATIFICATION",
-        subtitle: "Building Empirical Evidence & Consensus",
-        content: "Gathering harm dice as evidence folders into our shared coalition pool, then convening at the Global Hub to execute the International Consensus Summit Mini-Game! A total roll >= 13 ratifies global binding treaties for that harm pillar.",
-        speechBubble: "When we ratify international consensus on a harm pillar, treating it becomes vastly easier worldwide!",
-        badge: "🏛️ CONSENSUS SUMMITS"
+        title: "3. SPECIAL PLUS REGULATOR ENFORCEMENT",
+        subtitle: "Statutory Enforcement & Multiplier Capability",
+        content: "The Regulator / Operator commands a 'Special Plus' capability—invoking resourced Regulatory Action cards at any time, converting deployment dice to sandbox events via Resources (R), and applying 2xT/3xT treatment multipliers.",
+        speechBubble: "Regulators bridge the gap between field evidence collection and binding legal containment!",
+        badge: "⚖️ SPECIAL PLUS"
       },
       {
-        title: "4. SYSTEMIC ESCALATION",
-        subtitle: "AI Deployment Rate Track Acceleration",
-        content: "The Deployment Rate Track advancing step-by-step each round, drawing more harm dice from the cloth AI Bag. High deployment tiers force 3, 4, or 5 harm draws per turn across sectors!",
-        speechBubble: "Unchecked deployment acceleration fuels rapid cascading spillovers into neighboring continents!",
-        badge: "📈 ESCALATION TRACK"
+        title: "4. INTERNATIONAL CONSENSUS SUMMITS",
+        subtitle: "Pooling Evidence & Treaty Ratification",
+        content: "Gathering harm dice into evidence stashes across sectors, then convening at the International Consensus Summit Mini-Game! Rolling >= 13 on 4d6 (+2 bonus) permanently ratifies global binding treaties for target harm pillars.",
+        speechBubble: "Ratifying international treaties neutralizes systemic risks globally!",
+        badge: "🏛️ TREATY SUMMIT"
       },
       {
-        title: "5. CASCADING SPILLOVER RISK",
-        subtitle: "Critical Mass & Singularity Loss Conditions",
-        content: "Allowing more than 3 harm dice of the same color to accumulate in any sector—triggering a CRITICAL MASS BOOM spillover—or letting the Deployment Track reach Step 16 (Full Uncontrolled Singularity).",
-        speechBubble: "If systemic risks overflow globally or the AI bag runs dry, governance fails!",
-        badge: "💥 CASCADING RISK"
-      },
-      {
-        title: "6. GLOBAL HARMONIZATION VICTORY",
-        subtitle: "Ratifying All 4 AI Governance Pillars",
-        content: "Successfully ratifying international consensus on ALL 4 AI Harm Pillars (Discrimination, Emotional Dependency, Alienation, Disinformation) at the Summit before step 16 is reached!",
-        speechBubble: "Victory means safe, human-aligned AI governance for the future of humanity!",
-        badge: "🏆 HUMAN VICTORY"
+        title: "5. ESCALATION & PREVENTING SINGULARITY",
+        subtitle: "Managing the 16-Step AI Deployment Track",
+        content: "Deterring harm spillovers across the 5 sectors while keeping the 16-step AI Deployment Track from reaching critical escalation. Ratify all 4 Harm Pillars before step 16 to achieve global prevention victory!",
+        speechBubble: "Prevention is our victory condition—aligning AI with human safety for a thriving future!",
+        badge: "🏆 PREVENTION VICTORY"
       }
     ];
 
@@ -1232,15 +1366,15 @@
       container.innerHTML = `
         <div class="flex justify-between items-center border-b border-slate-200 pb-4">
           <div>
-            <span class="px-2.5 py-1 text-[10px] font-mono uppercase tracking-widest bg-sky-100 text-sky-800 border border-sky-200 rounded-md font-bold">${slide.badge}</span>
+            <span class="px-2.5 py-1 text-[10px] font-mono uppercase tracking-widest bg-orange-100 text-orange-800 border border-orange-200 rounded-md font-bold">${slide.badge}</span>
             <h3 class="text-2xl md:text-3xl font-heading font-bold text-slate-900 mt-2 leading-none">${slide.title}</h3>
             <p class="text-sm font-medium text-slate-500 mt-1">${slide.subtitle}</p>
           </div>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
-          <div class="glass-card p-5 border-l-4 border-l-sky-500 bg-sky-50/60 space-y-2">
-            <span class="text-[10px] font-mono text-sky-800 uppercase font-bold tracking-wider">SPEAKER COMMENTARY</span>
+          <div class="glass-card p-5 border-l-4 border-l-orange-500 bg-orange-50/50 space-y-2">
+            <span class="text-[10px] font-mono text-orange-800 uppercase font-bold tracking-wider">SPEAKER COMMENTARY</span>
             <p class="text-sm text-slate-800 leading-relaxed italic font-medium">
               "${slide.speechBubble}"
             </p>
@@ -1280,7 +1414,7 @@
     }
 
     /* ===================================================================
-       SECTION 3: CHARACTER ROLES DOSSIERS
+       TAB 3: 7 CHARACTER ROLES DOSSIERS
        =================================================================== */
     function renderRoleCards() {
       const container = document.getElementById('roles-grid');
@@ -1292,7 +1426,10 @@
         card.innerHTML = `
           <div class="flex justify-between items-start border-b border-slate-200 pb-3">
             <div>
-              <span class="text-[10px] font-mono uppercase text-slate-400 font-bold">DOSSIER FILE</span>
+              <div class="flex items-center gap-1.5">
+                <span class="text-[10px] font-mono uppercase text-slate-400 font-bold">DOSSIER FILE</span>
+                ${r.hasSpecialPlus ? '<span class="px-1.5 py-0.2 bg-purple-100 text-purple-800 border border-purple-300 font-mono text-[9px] font-bold rounded">SPECIAL PLUS</span>' : ''}
+              </div>
               <h3 class="text-xl font-heading font-bold ${r.textColor} leading-tight mt-0.5">${r.name}</h3>
             </div>
             <div class="w-10 h-10 rounded-xl border ${r.badgeBg} flex items-center justify-center text-xl shadow-sm">
@@ -1302,12 +1439,12 @@
 
           <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200 text-xs font-mono flex justify-between items-center">
             <span class="text-slate-500 font-medium">Dice Pool Size:</span>
-            <span class="text-sky-800 font-bold">${r.diceCount} Action Dice</span>
+            <span class="text-orange-800 font-bold">${r.diceCount} Action Dice</span>
           </div>
 
-          <div class="bg-amber-50/70 p-3 rounded-xl border border-amber-200/80 space-y-1">
-            <h4 class="text-[10px] font-mono uppercase text-amber-800 font-bold">PASSIVE CAPABILITY:</h4>
-            <p class="text-xs text-amber-900 leading-relaxed font-medium">${r.power}</p>
+          <div class="${r.hasSpecialPlus ? 'bg-purple-50/80 border-purple-200' : 'bg-amber-50/70 border-amber-200/80'} p-3 rounded-xl border space-y-1">
+            <h4 class="text-[10px] font-mono uppercase ${r.hasSpecialPlus ? 'text-purple-900' : 'text-amber-800'} font-bold">PASSIVE / SPECIAL POWER:</h4>
+            <p class="text-xs ${r.hasSpecialPlus ? 'text-purple-950' : 'text-amber-900'} leading-relaxed font-medium">${r.power}</p>
           </div>
         `;
         container.appendChild(card);

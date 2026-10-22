@@ -1,0 +1,1318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SINGULARITY: The AI Governance Cooperative Game</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            heading: ['Syne', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            brand: {
+              50: '#F0F9FF',
+              100: '#E0F2FE',
+              500: '#0EA5E9',
+              600: '#0284C7',
+              700: '#0369A1',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #F8FAFC;
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(14, 165, 233, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(99, 102, 241, 0.05) 0%, transparent 40%),
+        linear-gradient(rgba(203, 213, 225, 0.25) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(203, 213, 225, 0.25) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 28px 28px, 28px 28px;
+      color: #1E293B;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    h1, h2, h3, h4, .font-heading {
+      font-family: 'Syne', sans-serif;
+    }
+
+    .font-mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Harmonized Light Cards */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(226, 232, 240, 0.9);
+      box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.04), 0 2px 6px -1px rgba(15, 23, 42, 0.02);
+      border-radius: 16px;
+      transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .glass-card:hover {
+      border-color: rgba(148, 163, 184, 0.5);
+    }
+
+    .glass-card-interactive:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 25px -5px rgba(15, 23, 42, 0.08), 0 0 15px rgba(14, 165, 233, 0.12);
+      border-color: rgba(14, 165, 233, 0.4);
+    }
+
+    /* Command Buttons */
+    .btn-command {
+      background: #FFFFFF;
+      border: 1px solid #CBD5E1;
+      color: #334155;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      border-radius: 10px;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+    }
+
+    .btn-command:hover:not(:disabled) {
+      background: #F1F5F9;
+      border-color: #0EA5E9;
+      color: #0284C7;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(14, 165, 233, 0.15);
+    }
+
+    .btn-command:active:not(:disabled) {
+      transform: translateY(0);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    }
+
+    .btn-command:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+      border-color: #E2E8F0;
+      background: #F8FAFC;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #0EA5E9 0%, #0284C7 100%);
+      border: 1px solid #0EA5E9;
+      color: #FFFFFF;
+      box-shadow: 0 4px 14px rgba(14, 165, 233, 0.25);
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      background: linear-gradient(135deg, #38BDF8 0%, #0EA5E9 100%);
+      box-shadow: 0 6px 18px rgba(14, 165, 233, 0.35);
+      color: #FFFFFF;
+    }
+
+    .btn-accent {
+      background: linear-gradient(135deg, #6366F1 0%, #4F46E5 100%);
+      border: 1px solid #6366F1;
+      color: #FFFFFF;
+      box-shadow: 0 4px 14px rgba(99, 102, 241, 0.25);
+    }
+
+    .btn-accent:hover:not(:disabled) {
+      background: linear-gradient(135deg, #818CF8 0%, #6366F1 100%);
+      box-shadow: 0 6px 18px rgba(99, 102, 241, 0.35);
+      color: #FFFFFF;
+    }
+
+    /* Custom Light Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F1F5F9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 4px;
+      border: 2px solid #F1F5F9;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94A3B8;
+    }
+
+    /* Modal Animation */
+    @keyframes modalFadeIn {
+      from { opacity: 0; transform: scale(0.97) translateY(8px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    .animate-modal {
+      animation: modalFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .glow-dot {
+      box-shadow: 0 0 8px currentColor;
+    }
+  </style>
+</head>
+<body class="flex flex-col min-h-screen antialiased text-slate-800">
+
+  <!-- TOP HEADER / EXECUTIVE COMMAND BANNER -->
+  <header class="bg-white/80 border-b border-slate-200/80 backdrop-blur-xl sticky top-0 z-40 px-4 py-3.5 shadow-sm">
+    <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-4">
+      
+      <!-- Brand & Status -->
+      <div class="flex items-center space-x-3.5">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-sky-500 to-indigo-600 p-0.5 shadow-md flex items-center justify-center">
+          <div class="w-full h-full bg-white rounded-[10px] flex items-center justify-center">
+            <span class="font-heading font-extrabold text-sky-600 text-xl">S</span>
+          </div>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="text-xl md:text-2xl font-heading font-extrabold tracking-tight text-slate-900 leading-none">
+              SINGULARITY
+            </h1>
+            <span class="px-2 py-0.5 text-[10px] font-mono uppercase tracking-wider bg-sky-100 text-sky-800 border border-sky-200 rounded-md font-bold">
+              AI Governance Simulator
+            </span>
+          </div>
+          <p class="text-xs text-slate-500 font-medium">
+            Multi-Stakeholder Cooperative Strategy Board
+          </p>
+        </div>
+      </div>
+
+      <!-- Navigation Tabs -->
+      <nav class="flex flex-wrap items-center gap-1.5 bg-slate-100 p-1 border border-slate-200 rounded-xl">
+        <button onclick="switchTab('game')" id="tab-game" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all bg-white text-sky-700 shadow-sm border border-slate-200 font-bold">
+          🎲 Board Operations
+        </button>
+        <button onclick="switchTab('pitch')" id="tab-pitch" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold text-slate-600 hover:text-slate-900 hover:bg-white/60 transition-all">
+          📢 Briefing Deck
+        </button>
+        <button onclick="switchTab('roles')" id="tab-roles" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold text-slate-600 hover:text-slate-900 hover:bg-white/60 transition-all">
+          🃏 Role Dossiers
+        </button>
+        <button onclick="switchTab('rules')" id="tab-rules" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold text-slate-600 hover:text-slate-900 hover:bg-white/60 transition-all">
+          📖 Compendium
+        </button>
+        <button onclick="switchTab('github')" id="tab-github" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold text-slate-600 hover:text-slate-900 hover:bg-white/60 transition-all">
+          🚀 Deployment Guide
+        </button>
+      </nav>
+
+      <!-- System Audio Toggle -->
+      <div class="hidden sm:flex items-center gap-2">
+        <button id="sound-btn" onclick="toggleSound()" class="btn-command px-3 py-1.5 text-xs flex items-center gap-1.5">
+          <span>🔊</span> <span>Sound: On</span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER -->
+  <main class="flex-1 p-4 md:p-6 max-w-7xl mx-auto w-full space-y-6">
+
+    <!-- ========================================== -->
+    <!-- SECTION 1: GAME BOARD & OPERATIONS -->
+    <!-- ========================================== -->
+    <section id="section-game" class="space-y-6">
+
+      <!-- TOP METRICS & DEPLOYMENT PIPELINE TRACK -->
+      <div class="glass-card p-5 space-y-4 relative overflow-hidden border-t-4 border-t-sky-500">
+        <div class="flex flex-wrap justify-between items-center gap-4 border-b border-slate-200 pb-3">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-sky-500 glow-dot animate-pulse"></span>
+              <h2 class="text-xs font-mono font-bold uppercase text-sky-700 tracking-wider">AI DEPLOYMENT PIPELINE TRACK</h2>
+            </div>
+            <p class="text-xs text-slate-500 mt-0.5">As AI deployment advances, draw frequency of systemic harm dice escalates each round.</p>
+          </div>
+
+          <div class="flex items-center gap-3 font-mono text-xs">
+            <div class="bg-slate-100 border border-slate-200 px-3 py-1.5 rounded-lg flex items-center gap-2">
+              <span class="text-slate-500">BAG RESERVE:</span>
+              <span id="bag-count" class="text-sky-700 font-bold">24 DICE</span>
+            </div>
+            <div id="rate-multiplier-badge" class="bg-amber-100 border border-amber-200 text-amber-800 px-3 py-1.5 rounded-lg font-bold">
+              Rate: 2 Harms / Turn
+            </div>
+          </div>
+        </div>
+
+        <!-- Pipeline Nodes -->
+        <div>
+          <div class="grid grid-cols-8 md:grid-cols-16 gap-1.5" id="track-nodes-container">
+            <!-- Rendered dynamically -->
+          </div>
+        </div>
+      </div>
+
+      <!-- MAIN OPERATIONAL GRID -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+        <!-- LEFT COLUMN: 6 REGIONAL SECTORS (SPAN 7) -->
+        <div class="lg:col-span-7 space-y-4">
+          <div class="flex justify-between items-center px-1">
+            <h3 class="text-lg font-heading font-bold text-slate-900 flex items-center gap-2">
+              <span>🌍 REGIONAL GOVERNANCE SECTORS</span>
+            </h3>
+            <span class="text-xs font-mono text-slate-500">6 Global Sectors</span>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="regions-container">
+            <!-- Rendered dynamically -->
+          </div>
+        </div>
+
+        <!-- RIGHT COLUMN: COMMAND & ROLE CONTROLS (SPAN 5) -->
+        <div class="lg:col-span-5 space-y-5">
+
+          <!-- ACTIVE PLAYER ROLE DOSSIER -->
+          <div class="glass-card p-5 space-y-4 border-l-4 border-l-sky-500">
+            <div class="flex justify-between items-start border-b border-slate-200 pb-3">
+              <div>
+                <span class="text-[10px] font-mono uppercase tracking-widest text-sky-700 font-bold">ACTIVE TURNTABLE STAKEHOLDER</span>
+                <h3 id="player-role-name" class="text-2xl font-heading font-bold text-slate-900 mt-0.5">NGO COALITION</h3>
+                <div class="flex items-center gap-2 mt-1">
+                  <span class="text-xs text-slate-500">Current Sector:</span>
+                  <span id="player-location-text" class="text-xs font-semibold text-sky-800 bg-sky-100 border border-sky-200 px-2 py-0.5 rounded">North America</span>
+                </div>
+              </div>
+
+              <div id="player-pawn-badge" class="w-12 h-12 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-center text-2xl shadow-sm">
+                ♟️
+              </div>
+            </div>
+
+            <!-- Role Passive Ability -->
+            <div class="bg-amber-50/70 p-3 rounded-xl border border-amber-200/80 space-y-1">
+              <span class="text-[10px] font-mono uppercase text-amber-800 font-bold tracking-wider">⚡ STAKEHOLDER PASSIVE CAPABILITY:</span>
+              <p id="player-power-text" class="text-xs text-amber-900 leading-relaxed font-medium">
+                Free Evidence transfer to allies in the same regional sector.
+              </p>
+            </div>
+
+            <!-- Evidence Stash -->
+            <div class="flex items-center justify-between bg-slate-100/80 px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs">
+              <span class="text-slate-600 font-medium">📁 Evidence Stash:</span>
+              <span id="player-evidence-stash" class="font-mono font-bold text-sky-700">0 Collected</span>
+            </div>
+
+            <!-- ACTION DICE ROLL TRAY -->
+            <div class="space-y-2 pt-1">
+              <div class="flex justify-between items-center">
+                <span class="text-xs font-mono font-semibold text-slate-700">AVAILABLE ACTION DICE:</span>
+                <button onclick="rollPlayerDice()" class="btn-command btn-primary px-3 py-1.5 text-xs flex items-center gap-1.5">
+                  <span>🎲</span> <span>Roll Action Dice</span>
+                </button>
+              </div>
+
+              <div id="action-dice-tray" class="flex flex-wrap gap-2 p-3 bg-slate-50 border border-slate-200 rounded-xl min-h-[52px] items-center">
+                <p class="text-xs text-slate-500 italic">Click "Roll Action Dice" to initialize turn actions.</p>
+              </div>
+            </div>
+
+            <!-- STRATEGIC COMMAND ACTIONS BUTTONS -->
+            <div class="grid grid-cols-2 gap-2 pt-2 border-t border-slate-200">
+              <button onclick="actionMoveModal()" class="btn-command px-3 py-2 text-xs flex items-center justify-center gap-1.5">
+                <span>⛵/✈️</span> Move Sector
+              </button>
+              <button onclick="actionTreatHarm()" class="btn-command px-3 py-2 text-xs flex items-center justify-center gap-1.5">
+                <span>💉</span> Treat Harm
+              </button>
+              <button onclick="actionCollectEvidence()" class="btn-command px-3 py-2 text-xs flex items-center justify-center gap-1.5">
+                <span>📁</span> Gather Evidence
+              </button>
+              <button onclick="actionConvene()" class="btn-command px-3 py-2 text-xs flex items-center justify-center gap-1.5">
+                <span>🚁</span> Convene Allies
+              </button>
+              <button onclick="actionResource()" class="btn-command px-3 py-2 text-xs flex items-center justify-center gap-1.5">
+                <span>⚙️</span> Resource / Slow
+              </button>
+              <button onclick="actionSummitModal()" class="btn-command btn-accent px-3 py-2 text-xs flex items-center justify-center gap-1.5">
+                <span>🏛️</span> Convene Summit
+              </button>
+            </div>
+
+            <!-- END TURN BUTTON -->
+            <div class="pt-2">
+              <button onclick="endPlayerTurn()" class="w-full btn-command bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white border-emerald-600 py-2.5 text-xs font-bold uppercase tracking-wider rounded-xl shadow-md flex items-center justify-center gap-2">
+                <span>⏩</span> End Turn & Trigger AI Deployment
+              </button>
+            </div>
+          </div>
+
+          <!-- INTERNATIONAL CONSENSUS PILLARS STATUS -->
+          <div class="glass-card p-5 space-y-3">
+            <div class="flex justify-between items-center border-b border-slate-200 pb-2">
+              <h4 class="text-xs font-mono font-bold text-slate-700 uppercase tracking-wider">GLOBAL TREATY RATIFICATION MATRIX</h4>
+              <span class="text-[10px] font-mono text-sky-700 font-bold">4 Pillars</span>
+            </div>
+
+            <div class="grid grid-cols-2 gap-2" id="consensus-pillars">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+
+          <!-- RESET SIMULATION BUTTON -->
+          <div class="text-right">
+            <button onclick="resetGame()" class="text-xs text-slate-400 hover:text-slate-600 transition-colors font-mono">
+              🔄 Reset Game Engine State
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SECTION 2: 3-MINUTE BRIEFING PITCH DECK -->
+    <!-- ========================================== -->
+    <section id="section-pitch" class="hidden space-y-6">
+
+      <div class="glass-card p-6 border-l-4 border-l-indigo-500 flex flex-wrap justify-between items-center gap-4">
+        <div>
+          <span class="px-2.5 py-1 text-[10px] font-mono uppercase tracking-widest bg-indigo-100 text-indigo-800 border border-indigo-200 rounded-md font-bold">
+            EXECUTIVE BRIEFING STORYBOOK
+          </span>
+          <h2 class="text-2xl md:text-3xl font-heading font-bold text-slate-900 mt-2">
+            "SINGULARITY: THE AI GOVERNANCE GAME"
+          </h2>
+          <p class="text-xs text-slate-500 font-medium">
+            3-Minute Pitch Presentation for Stakeholders & Game Designers
+          </p>
+        </div>
+
+        <button id="narrator-btn" onclick="toggleNarrator()" class="btn-command px-4 py-2 text-xs flex items-center gap-2">
+          <span>🗣️</span> <span>Voice Narrator: Off</span>
+        </button>
+      </div>
+
+      <!-- CAROUSEL SLIDE CONTAINER -->
+      <div class="glass-card p-6 md:p-10 relative min-h-[400px] flex flex-col justify-between space-y-6">
+
+        <div id="pitch-slide-content" class="space-y-6">
+          <!-- Slide JS Injected Here -->
+        </div>
+
+        <!-- Carousel Navigation Controls -->
+        <div class="flex justify-between items-center pt-6 border-t border-slate-200">
+          <button onclick="prevSlide()" class="btn-command px-4 py-2 text-xs flex items-center gap-2">
+            <span>⬅️</span> Previous Slide
+          </button>
+          
+          <div class="font-mono text-xs font-bold text-sky-700" id="slide-number">
+            SLIDE 1 / 6
+          </div>
+
+          <button onclick="nextSlide()" class="btn-command btn-primary px-4 py-2 text-xs flex items-center gap-2">
+            Next Slide <span>➡️</span>
+          </button>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SECTION 3: CHARACTER ROLES DOSSIERS -->
+    <!-- ========================================== -->
+    <section id="section-roles" class="hidden space-y-6">
+
+      <div class="glass-card p-5 border-l-4 border-l-amber-500">
+        <h2 class="text-2xl font-heading font-bold text-slate-900">🃏 STAKEHOLDER ROLE DOSSIERS</h2>
+        <p class="text-xs text-slate-500 mt-1">
+          Explore all 7 specialized governance roles, action dice allocation pools, and passive strategic powers.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5" id="roles-grid">
+        <!-- Rendered via JavaScript -->
+      </div>
+
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SECTION 4: RULES & ICONOGRAPHY COMPENDIUM -->
+    <!-- ========================================== -->
+    <section id="section-rules" class="hidden space-y-6">
+
+      <div class="glass-card p-5 border-l-4 border-l-sky-500">
+        <h2 class="text-2xl font-heading font-bold text-slate-900">📖 RULES & ICONOGRAPHY COMPENDIUM</h2>
+        <p class="text-xs text-slate-500 mt-1">
+          Reference guide for action dice symbols, harm pillar classifications, and win/loss mechanics.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+        <!-- ACTION SYMBOLS -->
+        <div class="glass-card p-5 space-y-4">
+          <h3 class="text-base font-heading font-bold text-sky-800 border-b border-slate-200 pb-2">🎲 ACTION DICE FACES</h3>
+          <ul class="space-y-2.5 text-xs">
+            <li class="flex items-center gap-3 bg-slate-50 p-2.5 rounded-xl border border-slate-200">
+              <span class="text-xl bg-white p-1.5 rounded-lg border border-slate-200 shadow-sm">⛵</span>
+              <div>
+                <span class="font-bold text-sky-800">L - Local Share (Boat):</span>
+                <p class="text-slate-600 mt-0.5">Move pawn to an adjacent regional sector tile.</p>
+              </div>
+            </li>
+            <li class="flex items-center gap-3 bg-slate-50 p-2.5 rounded-xl border border-slate-200">
+              <span class="text-xl bg-white p-1.5 rounded-lg border border-slate-200 shadow-sm">✈️</span>
+              <div>
+                <span class="font-bold text-indigo-800">I - International Share (Plane):</span>
+                <p class="text-slate-600 mt-0.5">Fly directly to ANY regional sector tile globally.</p>
+              </div>
+            </li>
+            <li class="flex items-center gap-3 bg-slate-50 p-2.5 rounded-xl border border-slate-200">
+              <span class="text-xl bg-white p-1.5 rounded-lg border border-slate-200 shadow-sm">☣️</span>
+              <div>
+                <span class="font-bold text-rose-800">D - Deploy / Early Warning:</span>
+                <p class="text-slate-600 mt-0.5">Shield a region or inspect upcoming AI deployment draws.</p>
+              </div>
+            </li>
+            <li class="flex items-center gap-3 bg-slate-50 p-2.5 rounded-xl border border-slate-200">
+              <span class="text-xl bg-white p-1.5 rounded-lg border border-slate-200 shadow-sm">📁</span>
+              <div>
+                <span class="font-bold text-amber-800">E - Collect Evidence:</span>
+                <p class="text-slate-600 mt-0.5">Extract 1 harm die from current sector into your personal evidence stash.</p>
+              </div>
+            </li>
+            <li class="flex items-center gap-3 bg-slate-50 p-2.5 rounded-xl border border-slate-200">
+              <span class="text-xl bg-white p-1.5 rounded-lg border border-slate-200 shadow-sm">💉</span>
+              <div>
+                <span class="font-bold text-emerald-800">T - Treat Harm:</span>
+                <p class="text-slate-600 mt-0.5">Return 1 harm die from current sector back into the cloth AI Bag.</p>
+              </div>
+            </li>
+            <li class="flex items-center gap-3 bg-slate-50 p-2.5 rounded-xl border border-slate-200">
+              <span class="text-xl bg-white p-1.5 rounded-lg border border-slate-200 shadow-sm">🚁</span>
+              <div>
+                <span class="font-bold text-purple-800">C - Convene:</span>
+                <p class="text-slate-600 mt-0.5">Move another player pawn directly into your sector for joint summit tasks.</p>
+              </div>
+            </li>
+            <li class="flex items-center gap-3 bg-slate-50 p-2.5 rounded-xl border border-slate-200">
+              <span class="text-xl bg-white p-1.5 rounded-lg border border-slate-200 shadow-sm">⚙️</span>
+              <div>
+                <span class="font-bold text-teal-800">R - Resource:</span>
+                <p class="text-slate-600 mt-0.5">Slow down the deployment track by 1 step or build sandbox safety barriers.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- HARM DICE PILLARS -->
+        <div class="glass-card p-5 space-y-4">
+          <h3 class="text-base font-heading font-bold text-indigo-800 border-b border-slate-200 pb-2">🎲 4 SYSTEMIC HARM PILLARS</h3>
+          <ul class="space-y-3 text-xs">
+            <li class="bg-rose-50 p-3 rounded-xl border-l-4 border-l-rose-500 border border-rose-200">
+              <h4 class="font-bold text-rose-800 text-sm flex items-center gap-1.5">💖 DISCRIMINATION</h4>
+              <p class="text-rose-900 mt-1">Algorithmic bias in hiring, credit scoring, legal sentencing, and resource allocation.</p>
+            </li>
+            <li class="bg-amber-50 p-3 rounded-xl border-l-4 border-l-amber-500 border border-amber-200">
+              <h4 class="font-bold text-amber-800 text-sm flex items-center gap-1.5">💧 EMOTIONAL DEPENDENCY</h4>
+              <p class="text-amber-900 mt-1">Parasocial chatbot attachment, psychological reliance, and affective manipulation.</p>
+            </li>
+            <li class="bg-purple-50 p-3 rounded-xl border-l-4 border-l-purple-500 border border-purple-200">
+              <h4 class="font-bold text-purple-800 text-sm flex items-center gap-1.5">🔮 ALIENATION</h4>
+              <p class="text-purple-900 mt-1">Erosion of social cohesion, labor displacement, and loss of human agency.</p>
+            </li>
+            <li class="bg-sky-50 p-3 rounded-xl border-l-4 border-l-sky-500 border border-sky-200">
+              <h4 class="font-bold text-sky-800 text-sm flex items-center gap-1.5">⚡ DISINFORMATION</h4>
+              <p class="text-sky-900 mt-1">Synthetic media floods, deepfakes, hallucinated facts, and institutional trust collapse.</p>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SECTION 5: GITHUB DEPLOYMENT GUIDE -->
+    <!-- ========================================== -->
+    <section id="section-github" class="hidden space-y-6">
+
+      <div class="glass-card p-5 border-l-4 border-l-emerald-500">
+        <h2 class="text-2xl font-heading font-bold text-slate-900">🚀 STEP-BY-STEP GITHUB PAGES DEPLOYMENT GUIDE</h2>
+        <p class="text-xs text-slate-500 mt-1">
+          Follow these 5 simple steps to host and publish your live web app for free.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+        <div class="glass-card p-5 space-y-4 text-xs">
+          <div class="border-b border-slate-200 pb-2">
+            <span class="px-2 py-0.5 bg-emerald-100 text-emerald-800 border border-emerald-200 font-mono font-bold rounded">STEPS 1 & 2</span>
+            <h3 class="text-base font-heading font-bold text-slate-900 mt-2">1. Create Repository & Index File</h3>
+          </div>
+          <ol class="list-decimal list-inside space-y-2.5 text-slate-700 font-medium">
+            <li>Log into your account at <a href="https://github.com" target="_blank" class="text-sky-700 hover:underline font-bold">GitHub.com</a>.</li>
+            <li>Click the <strong class="text-slate-900">"+"</strong> icon in the upper right and select <strong class="text-slate-900">New repository</strong>.</li>
+            <li>Name your repository <code class="bg-slate-100 px-1.5 py-0.5 rounded text-indigo-700 font-mono">singularity-game</code>.</li>
+            <li>Select <strong class="text-slate-900">Public</strong>, check <strong class="text-slate-900">Add a README file</strong>, and click <strong class="text-slate-900">Create repository</strong>.</li>
+            <li>Click <strong class="text-slate-900">Add file ➔ Create new file</strong>, name it exactly <code class="bg-slate-100 px-1.5 py-0.5 rounded text-indigo-700 font-mono">index.html</code>.</li>
+            <li>Paste all the single-file code from this editor into the box and click <strong class="text-slate-900">Commit changes...</strong></li>
+          </ol>
+        </div>
+
+        <div class="glass-card p-5 space-y-4 text-xs">
+          <div class="border-b border-slate-200 pb-2">
+            <span class="px-2 py-0.5 bg-sky-100 text-sky-800 border border-sky-200 font-mono font-bold rounded">STEPS 3, 4 & 5</span>
+            <h3 class="text-base font-heading font-bold text-slate-900 mt-2">2. Enable Pages & Access Site</h3>
+          </div>
+          <ol class="list-decimal list-inside space-y-2.5 text-slate-700 font-medium">
+            <li>In your repository, click <strong class="text-slate-900">⚙️ Settings</strong> tab at top.</li>
+            <li>On the left sidebar, click <strong class="text-slate-900">Pages</strong> under Code and automation.</li>
+            <li>Under <strong class="text-slate-900">Build and deployment ➔ Source</strong>, select <code class="bg-slate-100 px-1.5 py-0.5 rounded font-mono">Deploy from a branch</code>.</li>
+            <li>Under <strong class="text-slate-900">Branch</strong>, select <code class="bg-slate-100 px-1.5 py-0.5 rounded font-mono">main</code> (or <code class="bg-slate-100 px-1.5 py-0.5 rounded font-mono">master</code>) and folder <code class="bg-slate-100 px-1.5 py-0.5 rounded font-mono">/(root)</code>, then click <strong class="text-slate-900">Save</strong>.</li>
+            <li>Wait 1–2 minutes, then refresh. GitHub will display your live site link:</li>
+          </ol>
+          <div class="bg-sky-50 p-3 rounded-xl border border-sky-200 font-mono text-[11px] text-sky-800 break-all font-semibold">
+            https://&lt;your-github-username&gt;.github.io/singularity-game/
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- MODAL: INTERNATIONAL CONSENSUS SUMMIT -->
+  <div id="summit-modal" class="fixed inset-0 bg-slate-900/40 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+    <div class="glass-card max-w-xl w-full p-6 space-y-5 animate-modal border-sky-300 bg-white shadow-2xl">
+      <div class="flex justify-between items-center border-b border-slate-200 pb-3">
+        <div class="flex items-center gap-2">
+          <span class="text-2xl">🏛️</span>
+          <h2 class="text-xl font-heading font-bold text-slate-900">INTERNATIONAL CONSENSUS SUMMIT</h2>
+        </div>
+        <button onclick="closeModal('summit-modal')" class="text-slate-400 hover:text-slate-700 font-mono text-lg px-2">✕</button>
+      </div>
+
+      <p class="text-xs text-slate-600 leading-relaxed">
+        Pool all collected Evidence dice across all players! Select 1 target Harm pillar to solve globally. Roll total <strong>&gt;= 13</strong> on 4d6 (+2 bonus) to ratify binding international treaty!
+      </p>
+
+      <!-- Harm Selection -->
+      <div class="space-y-2">
+        <span class="text-[10px] font-mono text-slate-500 uppercase font-bold">1. SELECT TARGET HARM PILLAR:</span>
+        <div class="grid grid-cols-2 gap-2" id="summit-harm-selection">
+          <!-- Rendered via JS -->
+        </div>
+      </div>
+
+      <!-- Combined Evidence Tray -->
+      <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200 space-y-1.5">
+        <span class="text-[10px] font-mono text-amber-800 font-bold uppercase">2. TOTAL TEAM EVIDENCE POOL:</span>
+        <div id="summit-evidence-pool" class="flex flex-wrap gap-1.5 pt-1">
+          <!-- Evidence icons -->
+        </div>
+      </div>
+
+      <!-- Roll Button & Outcome -->
+      <div class="space-y-3 pt-2 border-t border-slate-200">
+        <button id="summit-roll-btn" onclick="executeSummitRoll()" class="w-full btn-command btn-accent py-3 text-xs font-bold uppercase tracking-wider rounded-xl shadow-md">
+          🎲 Roll Summit Consensus (4D6 + 2 Bonus)
+        </button>
+
+        <div id="summit-result-text" class="text-center font-mono text-sm font-bold text-sky-800 min-h-[24px]">
+          Ready to convene summit...
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: CASCADING SPILLOVER EMERGENCY -->
+  <div id="explosion-modal" class="fixed inset-0 bg-slate-900/40 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+    <div class="glass-card max-w-md w-full p-6 text-center space-y-4 animate-modal border-rose-300 bg-white shadow-2xl">
+      <div class="w-14 h-14 rounded-2xl bg-rose-100 border border-rose-200 text-rose-600 flex items-center justify-center text-3xl mx-auto glow-dot">
+        💥
+      </div>
+      <h3 id="explosion-title" class="text-2xl font-heading font-bold text-slate-900 leading-tight">
+        CRITICAL HARM SPILLOVER!
+      </h3>
+      <p id="explosion-desc" class="text-xs text-slate-600 leading-relaxed bg-rose-50/60 p-3 rounded-xl border border-rose-200">
+        More than 3 harm dice of the same color gathered! Systemic harm spilled over into adjacent regions, accelerating AI Deployment by +1 Step!
+      </p>
+      <button onclick="closeModal('explosion-modal')" class="w-full btn-command bg-rose-600 hover:bg-rose-700 text-white border-rose-600 py-2.5 text-xs font-bold uppercase tracking-wider rounded-xl shadow-sm">
+        Acknowledge & Contain Damage 🛡️
+      </button>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="bg-white border-t border-slate-200 p-4 text-center text-xs text-slate-500 space-y-1 font-mono mt-auto">
+    <p>© 2026 Singularity AI Governance Cooperative • Executive Strategic Board Simulator</p>
+    <p class="text-[11px] text-slate-400">Designed with modern, human-friendly glassmorphic aesthetics and structured tabletop board mechanics.</p>
+  </footer>
+
+  <!-- JAVASCRIPT GAME LOGIC -->
+  <script>
+    /* ===================================================================
+       AUDIO SYNTHESIZER (WEB AUDIO API)
+       =================================================================== */
+    let soundEnabled = true;
+    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+    let audioCtx = null;
+
+    function initAudio() {
+      if (!audioCtx) audioCtx = new AudioCtx();
+    }
+
+    function playSound(type) {
+      if (!soundEnabled) return;
+      initAudio();
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+
+      const now = audioCtx.currentTime;
+
+      if (type === 'roll') {
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(220, now);
+        osc.frequency.exponentialRampToValueAtTime(580, now + 0.15);
+        gain.gain.setValueAtTime(0.15, now);
+        gain.gain.exponentialRampToValueAtTime(0.01, now + 0.15);
+        osc.start(now);
+        osc.stop(now + 0.15);
+      } else if (type === 'treat') {
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(440, now);
+        osc.frequency.exponentialRampToValueAtTime(880, now + 0.2);
+        gain.gain.setValueAtTime(0.15, now);
+        gain.gain.exponentialRampToValueAtTime(0.01, now + 0.2);
+        osc.start(now);
+        osc.stop(now + 0.2);
+      } else if (type === 'boom') {
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(130, now);
+        osc.frequency.exponentialRampToValueAtTime(35, now + 0.45);
+        gain.gain.setValueAtTime(0.3, now);
+        gain.gain.exponentialRampToValueAtTime(0.01, now + 0.45);
+        osc.start(now);
+        osc.stop(now + 0.45);
+      } else if (type === 'fanfare') {
+        osc.type = 'square';
+        osc.frequency.setValueAtTime(523.25, now);
+        osc.frequency.setValueAtTime(659.25, now + 0.1);
+        osc.frequency.setValueAtTime(783.99, now + 0.2);
+        osc.frequency.setValueAtTime(1046.50, now + 0.3);
+        gain.gain.setValueAtTime(0.2, now);
+        gain.gain.exponentialRampToValueAtTime(0.01, now + 0.55);
+        osc.start(now);
+        osc.stop(now + 0.55);
+      }
+    }
+
+    function toggleSound() {
+      soundEnabled = !soundEnabled;
+      document.getElementById('sound-btn').innerHTML = soundEnabled ? '<span>🔊</span> <span>Sound: On</span>' : '<span>🔇</span> <span>Sound: Off</span>';
+    }
+
+    /* ===================================================================
+       GAME STATE & DATA STRUCTURES
+       =================================================================== */
+    const ROLES = [
+      { id: 'ngo', name: 'NGO COALITION', color: 'border-t-emerald-500', textColor: 'text-emerald-700', pawnSymbol: '♟️', diceCount: 6, power: 'Free Evidence transfer to allies in same region.', badgeBg: 'bg-emerald-50 text-emerald-700 border-emerald-200' },
+      { id: 'cert', name: 'CERTIFICATION BODY', color: 'border-t-sky-500', textColor: 'text-sky-700', pawnSymbol: '🛡️', diceCount: 6, power: 'When entering area, put 1 die of each colour with 2+ dice into the bag.', badgeBg: 'bg-sky-50 text-sky-700 border-sky-200' },
+      { id: 'lab', name: 'AI METROLOGY LAB', color: 'border-t-amber-500', textColor: 'text-amber-800', pawnSymbol: '🔬', diceCount: 6, power: 'Add +2 to total of any roll to agree treatment standard in your area.', badgeBg: 'bg-amber-50 text-amber-800 border-amber-200' },
+      { id: 'standards', name: 'INTL STANDARDS BODY', color: 'border-t-indigo-500', textColor: 'text-indigo-700', pawnSymbol: '📜', diceCount: 6, power: 'Move other pawns in area to any area for free. Place Convene on card.', badgeBg: 'bg-indigo-50 text-indigo-700 border-indigo-200' },
+      { id: 'citizen', name: 'CITIZEN ASSEMBLY', color: 'border-t-orange-500', textColor: 'text-orange-800', pawnSymbol: '✊', diceCount: 7, power: 'Has 7 dice. First deployment rolled each turn does not advance rate marker.', badgeBg: 'bg-orange-50 text-orange-800 border-orange-200' },
+      { id: 'regulator', name: 'REGULATOR / OPERATOR', color: 'border-t-rose-500', textColor: 'text-rose-700', pawnSymbol: '⚖️', diceCount: 6, power: 'Invoke a resourced Regulatory Action card at any time.', badgeBg: 'bg-rose-50 text-rose-700 border-rose-200' },
+      { id: 'deployer', name: 'AI DEPLOYER', color: 'border-t-teal-500', textColor: 'text-teal-700', pawnSymbol: '🚀', diceCount: 6, power: 'Spend a Resource to set 1 deployment die in area and place in sandbox.', badgeBg: 'bg-teal-50 text-teal-700 border-teal-200' }
+    ];
+
+    const HARMS = [
+      { id: 'discrimination', name: 'Discrimination', colorName: 'Rose Red', bgClass: 'bg-rose-50 text-rose-700 border-rose-200', textClass: 'text-rose-700', icon: '💖' },
+      { id: 'dependency', name: 'Emotional Dependency', colorName: 'Warm Amber', bgClass: 'bg-amber-50 text-amber-800 border-amber-200', textClass: 'text-amber-800', icon: '💧' },
+      { id: 'alienation', name: 'Alienation', colorName: 'Violet Purple', bgClass: 'bg-purple-50 text-purple-700 border-purple-200', textClass: 'text-purple-700', icon: '🔮' },
+      { id: 'disinformation', name: 'Disinformation', colorName: 'Sky Cyan', bgClass: 'bg-sky-50 text-sky-700 border-sky-200', textClass: 'text-sky-700', icon: '⚡' }
+    ];
+
+    const ACTION_ICONS = {
+      'L': { name: 'Local Move (Boat)', icon: '⛵' },
+      'I': { name: 'International Move (Plane)', icon: '✈️' },
+      'D': { name: 'Deploy / Shield', icon: '☣️' },
+      'E': { name: 'Collect Evidence', icon: '📁' },
+      'T': { name: 'Treat Harm', icon: '💉' },
+      'C': { name: 'Convene Ally', icon: '🚁' },
+      'R': { name: 'Resource', icon: '⚙️' }
+    };
+
+    let gameState = {
+      trackStep: 1,
+      bagCount: 24,
+      activePlayerIndex: 0,
+      players: [
+        { roleId: 'ngo', location: 0, evidence: [] },
+        { roleId: 'cert', location: 1, evidence: [] },
+        { roleId: 'standards', location: 5, evidence: [] }
+      ],
+      regions: [
+        { id: 0, name: 'North America', d6: 1, color: 'border-l-sky-500', harms: ['discrimination', 'disinformation'], adj: [1, 4, 5] },
+        { id: 1, name: 'South America', d6: 2, color: 'border-l-emerald-500', harms: ['dependency'], adj: [0, 3, 5] },
+        { id: 2, name: 'Europe', d6: 3, color: 'border-l-indigo-500', harms: ['alienation'], adj: [3, 4, 5] },
+        { id: 3, name: 'Africa', d6: 4, color: 'border-l-amber-500', harms: [], adj: [1, 2, 5] },
+        { id: 4, name: 'Asia-Pacific', d6: 5, color: 'border-l-rose-500', harms: ['discrimination'], adj: [0, 2, 5] },
+        { id: 5, name: 'Global Hub', d6: 6, color: 'border-l-teal-500', harms: [], adj: [0, 1, 2, 3, 4] }
+      ],
+      consensus: {
+        discrimination: false,
+        dependency: false,
+        alienation: false,
+        disinformation: false
+      },
+      rolledDice: [],
+      selectedSummitHarm: 'discrimination'
+    };
+
+    /* ===================================================================
+       INITIALIZATION & RENDERING ENGINE
+       =================================================================== */
+    window.onload = function() {
+      renderTrackNodes();
+      renderRegions();
+      renderActivePlayer();
+      renderConsensusPillars();
+      renderRoleCards();
+      renderPitchSlide(0);
+    };
+
+    // TAB SWITCHING LOGIC
+    function switchTab(tabId) {
+      ['game', 'pitch', 'roles', 'rules', 'github'].forEach(id => {
+        const sec = document.getElementById(`section-${id}`);
+        if (sec) sec.classList.add('hidden');
+        
+        const btn = document.getElementById(`tab-${id}`);
+        if (btn) {
+          btn.className = "px-3.5 py-1.5 rounded-lg text-xs font-semibold text-slate-600 hover:text-slate-900 hover:bg-white/60 transition-all";
+        }
+      });
+
+      const activeSec = document.getElementById(`section-${tabId}`);
+      if (activeSec) activeSec.classList.remove('hidden');
+
+      const activeBtn = document.getElementById(`tab-${tabId}`);
+      if (activeBtn) {
+        activeBtn.className = "px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all bg-white text-sky-700 shadow-sm border border-slate-200 font-bold";
+      }
+    }
+
+    // RENDER DEPLOYMENT PIPELINE TRACK NODES
+    function renderTrackNodes() {
+      const container = document.getElementById('track-nodes-container');
+      container.innerHTML = '';
+      for (let i = 1; i <= 16; i++) {
+        const isActive = i === gameState.trackStep;
+        const node = document.createElement('div');
+        node.className = `h-9 rounded-lg border flex items-center justify-center font-mono text-xs font-bold transition-all ${
+          isActive 
+            ? 'bg-sky-600 text-white border-sky-400 shadow-md scale-105 z-10' 
+            : 'bg-slate-100 text-slate-600 border-slate-200'
+        }`;
+        node.innerText = i === 16 ? '💥16' : i;
+        container.appendChild(node);
+      }
+
+      // Rate multiplier calculation
+      let rate = 2;
+      if (gameState.trackStep >= 5) rate = 3;
+      if (gameState.trackStep >= 9) rate = 4;
+      if (gameState.trackStep >= 13) rate = 5;
+      document.getElementById('rate-multiplier-badge').innerText = `Rate: ${rate} Harms / Turn`;
+      document.getElementById('bag-count').innerText = `${gameState.bagCount} DICE`;
+    }
+
+    // RENDER 6 REGIONAL SECTOR CARDS
+    function renderRegions() {
+      const container = document.getElementById('regions-container');
+      container.innerHTML = '';
+
+      gameState.regions.forEach(region => {
+        const tile = document.createElement('div');
+        tile.className = `glass-card glass-card-interactive p-4 border-l-4 ${region.color} space-y-3 relative`;
+
+        // Players present
+        const playersHere = gameState.players.filter(p => p.location === region.id);
+        let playerPawnsHtml = playersHere.map(p => {
+          const role = ROLES.find(r => r.id === p.roleId);
+          return `<span class="w-6.5 h-6.5 rounded-lg border ${role.badgeBg} inline-flex items-center justify-center text-xs shadow-sm font-bold" title="${role.name}">${role.pawnSymbol}</span>`;
+        }).join(' ');
+
+        // Harms present
+        let harmsHtml = region.harms.map(hId => {
+          const h = HARMS.find(item => item.id === hId);
+          return `<span class="px-2 py-1 rounded-md border text-xs flex items-center gap-1 font-mono font-bold ${h.bgClass}" title="${h.name}">${h.icon}</span>`;
+        }).join(' ');
+
+        tile.innerHTML = `
+          <div>
+            <div class="flex justify-between items-center border-b border-slate-200 pb-2 mb-2">
+              <h3 class="font-heading font-bold text-base text-slate-900">${region.name}</h3>
+              <span class="font-mono text-[10px] bg-slate-100 text-slate-600 border border-slate-200 px-2 py-0.5 rounded font-semibold">d6: ${region.d6}</span>
+            </div>
+
+            <!-- Stakeholders present -->
+            <div class="flex items-center gap-1.5 mb-2.5 bg-slate-50/80 px-2.5 py-1.5 rounded-lg border border-slate-200">
+              <span class="text-[10px] font-mono text-slate-500 font-semibold">PAWNS:</span>
+              <div class="flex flex-wrap gap-1">${playerPawnsHtml || '<span class="text-[10px] italic text-slate-400">None</span>'}</div>
+            </div>
+
+            <!-- Harm Dice present -->
+            <div>
+              <div class="text-[10px] font-mono text-slate-500 mb-1 flex justify-between font-medium">
+                <span>HARM DICE (${region.harms.length}/3 MAX):</span>
+                ${region.harms.length >= 3 ? '<span class="text-rose-600 font-bold animate-pulse">⚠️ DANGER</span>' : ''}
+              </div>
+              <div class="flex flex-wrap gap-1.5 min-h-[38px] items-center bg-slate-50 p-2 rounded-lg border border-slate-200">
+                ${harmsHtml || '<span class="text-xs text-slate-400 italic">Sector Clear</span>'}
+              </div>
+            </div>
+          </div>
+        `;
+        container.appendChild(tile);
+      });
+    }
+
+    // RENDER ACTIVE PLAYER CARD
+    function renderActivePlayer() {
+      const activePlayer = gameState.players[gameState.activePlayerIndex];
+      const role = ROLES.find(r => r.id === activePlayer.roleId);
+      const region = gameState.regions[activePlayer.location];
+
+      document.getElementById('player-role-name').innerText = role.name;
+      document.getElementById('player-pawn-badge').className = `w-12 h-12 rounded-xl border ${role.badgeBg} flex items-center justify-center text-2xl shadow-sm`;
+      document.getElementById('player-pawn-badge').innerText = role.pawnSymbol;
+
+      document.getElementById('player-location-text').innerText = `${region.name} (d6: ${region.d6})`;
+      document.getElementById('player-power-text').innerText = role.power;
+      document.getElementById('player-evidence-stash').innerText = `${activePlayer.evidence.length} Collected (${activePlayer.evidence.map(e => e.toUpperCase()).join(', ') || 'None'})`;
+    }
+
+    // RENDER CONSENSUS PILLARS MATRIX
+    function renderConsensusPillars() {
+      const container = document.getElementById('consensus-pillars');
+      container.innerHTML = '';
+      HARMS.forEach(h => {
+        const solved = gameState.consensus[h.id];
+        const card = document.createElement('div');
+        card.className = `p-2.5 rounded-xl border flex items-center justify-between text-xs ${
+          solved ? 'bg-emerald-50 border-emerald-200 text-emerald-900 font-medium' : 'bg-slate-50 border-slate-200 text-slate-600'
+        }`;
+        card.innerHTML = `
+          <div class="flex items-center gap-1.5">
+            <span>${h.icon}</span>
+            <span class="font-semibold">${h.name}</span>
+          </div>
+          <span class="font-mono text-[10px] font-bold ${solved ? 'text-emerald-700' : 'text-slate-400'}">
+            ${solved ? '✓ RATIFIED' : 'PENDING'}
+          </span>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    /* ===================================================================
+       PLAYER ACTIONS & GAME LOGIC ENGINE
+       =================================================================== */
+    function rollPlayerDice() {
+      const activePlayer = gameState.players[gameState.activePlayerIndex];
+      const role = ROLES.find(r => r.id === activePlayer.roleId);
+      const faces = ['L', 'I', 'D', 'E', 'T', 'C', 'R'];
+      
+      gameState.rolledDice = [];
+      for (let i = 0; i < role.diceCount; i++) {
+        const rand = faces[Math.floor(Math.random() * faces.length)];
+        gameState.rolledDice.push(rand);
+      }
+
+      playSound('roll');
+      renderRolledDice();
+    }
+
+    function renderRolledDice() {
+      const tray = document.getElementById('action-dice-tray');
+      tray.innerHTML = '';
+
+      if (gameState.rolledDice.length === 0) {
+        tray.innerHTML = `<p class="text-xs text-slate-500 italic">Click "Roll Action Dice" to initialize turn actions.</p>`;
+        return;
+      }
+
+      gameState.rolledDice.forEach((face, index) => {
+        const die = document.createElement('button');
+        die.className = 'w-9 h-9 bg-white border border-slate-300 hover:border-sky-500 font-mono text-base font-bold rounded-lg flex items-center justify-center text-sky-800 hover:bg-sky-50 transition-all shadow-sm';
+        die.innerText = ACTION_ICONS[face].icon;
+        die.title = `${ACTION_ICONS[face].name} (Click to spend)`;
+        die.onclick = () => spendDie(index);
+        tray.appendChild(die);
+      });
+    }
+
+    function spendDie(index) {
+      gameState.rolledDice.splice(index, 1);
+      renderRolledDice();
+    }
+
+    // ACTION: MOVE SECTOR
+    function actionMoveModal() {
+      const activePlayer = gameState.players[gameState.activePlayerIndex];
+      const currentRegion = gameState.regions[activePlayer.location];
+      const targetRegionId = prompt(`SELECT TARGET SECTOR:\nCurrent: ${currentRegion.name}\nEnter sector d6 (1-6):\n1: North America, 2: South America, 3: Europe, 4: Africa, 5: Asia-Pacific, 6: Global Hub`);
+      
+      if (targetRegionId && targetRegionId >= 1 && targetRegionId <= 6) {
+        activePlayer.location = parseInt(targetRegionId) - 1;
+        playSound('treat');
+        renderRegions();
+        renderActivePlayer();
+      }
+    }
+
+    // ACTION: TREAT HARM
+    function actionTreatHarm() {
+      const activePlayer = gameState.players[gameState.activePlayerIndex];
+      const region = gameState.regions[activePlayer.location];
+
+      if (region.harms.length === 0) {
+        alert("No harm dice in this sector to treat!");
+        return;
+      }
+
+      const removed = region.harms.pop();
+      gameState.bagCount = Math.min(32, gameState.bagCount + 1);
+      playSound('treat');
+      renderRegions();
+      renderTrackNodes();
+      alert(`💉 Successfully treated 1 ${removed.toUpperCase()} harm die! Returned die to bag reserve.`);
+    }
+
+    // ACTION: GATHER EVIDENCE
+    function actionCollectEvidence() {
+      const activePlayer = gameState.players[gameState.activePlayerIndex];
+      const region = gameState.regions[activePlayer.location];
+
+      if (region.harms.length === 0) {
+        alert("No harm dice available in this sector to collect as evidence!");
+        return;
+      }
+
+      const harmCollected = region.harms.pop();
+      activePlayer.evidence.push(harmCollected);
+      playSound('treat');
+      renderRegions();
+      renderActivePlayer();
+      alert(`📁 Gathered 1 ${harmCollected.toUpperCase()} Evidence die into your team stash!`);
+    }
+
+    // ACTION: CONVENE
+    function actionConvene() {
+      const activePlayer = gameState.players[gameState.activePlayerIndex];
+      gameState.players.forEach(p => p.location = activePlayer.location);
+      playSound('treat');
+      renderRegions();
+      alert("🚁 Convened all stakeholder pawns into your regional sector!");
+    }
+
+    // ACTION: RESOURCE
+    function actionResource() {
+      if (gameState.trackStep > 1) {
+        gameState.trackStep -= 1;
+        renderTrackNodes();
+        playSound('treat');
+        alert("⚙️ Converted resources to slow down AI Deployment track by 1 step!");
+      }
+    }
+
+    // ACTION: END PLAYER TURN & AI DEPLOYMENT
+    function endPlayerTurn() {
+      let rate = 2;
+      if (gameState.trackStep >= 5) rate = 3;
+      if (gameState.trackStep >= 9) rate = 4;
+      if (gameState.trackStep >= 13) rate = 5;
+
+      for (let i = 0; i < rate; i++) {
+        if (gameState.bagCount <= 0) break;
+        gameState.bagCount--;
+
+        const randomHarm = HARMS[Math.floor(Math.random() * HARMS.length)].id;
+        const randomRegion = gameState.regions[Math.floor(Math.random() * gameState.regions.length)];
+
+        randomRegion.harms.push(randomHarm);
+      }
+
+      checkSpilloverExplosions();
+
+      gameState.activePlayerIndex = (gameState.activePlayerIndex + 1) % gameState.players.length;
+      gameState.rolledDice = [];
+
+      renderTrackNodes();
+      renderRegions();
+      renderActivePlayer();
+    }
+
+    // CASCADING SPILLOVER CHECK
+    function checkSpilloverExplosions() {
+      gameState.regions.forEach(region => {
+        if (region.harms.length > 3) {
+          playSound('boom');
+          gameState.trackStep = Math.min(16, gameState.trackStep + 1);
+
+          const excess = region.harms.splice(3);
+          excess.forEach(h => {
+            const adjId = region.adj[Math.floor(Math.random() * region.adj.length)];
+            gameState.regions[adjId].harms.push(h);
+          });
+
+          document.getElementById('explosion-title').innerText = `CRITICAL HARM SPILLOVER IN ${region.name.toUpperCase()}!`;
+          document.getElementById('explosion-modal').classList.remove('hidden');
+        }
+      });
+    }
+
+    // CONSENSUS SUMMIT MINI-GAME
+    function actionSummitModal() {
+      const activePlayer = gameState.players[gameState.activePlayerIndex];
+      if (activePlayer.location !== 5) {
+        alert("You must be located at the Global Hub (d6: 6) to convene the International Consensus Summit!");
+        return;
+      }
+
+      const harmSelectionContainer = document.getElementById('summit-harm-selection');
+      harmSelectionContainer.innerHTML = '';
+
+      HARMS.forEach(h => {
+        const solved = gameState.consensus[h.id];
+        const btn = document.createElement('button');
+        btn.className = `btn-command p-2.5 text-xs flex items-center justify-between ${
+          solved ? 'opacity-50 cursor-not-allowed bg-slate-100' : 'hover:border-sky-500'
+        }`;
+        btn.disabled = solved;
+        btn.innerHTML = `<span>${h.icon} ${h.name}</span> <span class="font-mono text-[10px] font-bold">${solved ? 'RATIFIED' : 'SELECT'}</span>`;
+        btn.onclick = () => {
+          gameState.selectedSummitHarm = h.id;
+          alert(`Target Harm Pillar Selected: ${h.name}`);
+        };
+        harmSelectionContainer.appendChild(btn);
+      });
+
+      const poolContainer = document.getElementById('summit-evidence-pool');
+      poolContainer.innerHTML = '';
+      let totalEvidence = 0;
+
+      gameState.players.forEach(p => {
+        p.evidence.forEach(e => {
+          totalEvidence++;
+          const item = document.createElement('span');
+          item.className = 'px-2.5 py-1 bg-white border border-slate-300 text-sky-800 font-mono text-[11px] rounded-md font-bold shadow-sm';
+          item.innerText = `📁 ${e.toUpperCase()}`;
+          poolContainer.appendChild(item);
+        });
+      });
+
+      if (totalEvidence === 0) {
+        poolContainer.innerHTML = `<span class="text-xs text-rose-600 italic font-medium">No evidence collected yet. Gather evidence from regional sectors first.</span>`;
+      }
+
+      document.getElementById('summit-modal').classList.remove('hidden');
+    }
+
+    function executeSummitRoll() {
+      const roll1 = Math.floor(Math.random() * 6) + 1;
+      const roll2 = Math.floor(Math.random() * 6) + 1;
+      const roll3 = Math.floor(Math.random() * 6) + 1;
+      const roll4 = Math.floor(Math.random() * 6) + 1;
+      const total = roll1 + roll2 + roll3 + roll4 + 2;
+
+      if (total >= 13) {
+        playSound('fanfare');
+        gameState.consensus[gameState.selectedSummitHarm] = true;
+        document.getElementById('summit-result-text').innerHTML = `<span class="text-emerald-700 font-bold">🎉 SUCCESS! ROLLED ${total} &gt;= 13! TREATY RATIFIED!</span>`;
+        renderConsensusPillars();
+
+        if (Object.values(gameState.consensus).every(v => v === true)) {
+          alert("🏆 GLOBAL AI GOVERNANCE ACHIEVED! INTERNATIONAL TREATY FULLY RATIFIED!");
+        }
+      } else {
+        playSound('boom');
+        document.getElementById('summit-result-text').innerHTML = `<span class="text-rose-600 font-bold">❌ SUMMIT FAILED! ROLLED ${total} &lt; 13. RE-CONVENE NEXT TURN.</span>`;
+      }
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).classList.add('hidden');
+    }
+
+    function resetGame() {
+      if (confirm("Reset simulation engine to initial state?")) {
+        location.reload();
+      }
+    }
+
+    /* ===================================================================
+       SECTION 2: 3-MINUTE BRIEFING PITCH DECK
+       =================================================================== */
+    const PITCH_SLIDES = [
+      {
+        title: "1. GLOBAL ASSEMBLY INITIALIZATION",
+        subtitle: "Setting Up Global Hubs & Specialist Roles",
+        content: "Setting up our 6 regional sectors across the board and choosing our specialized AI Governance Roles (NGO, Standards Body, Regulator, Metrology Lab, and Citizens). Each player brings unique dice pools and powers to tackle localized harms.",
+        speechBubble: "Welcome to Singularity! We are a cooperative team working to govern emerging AI systems before they cascade out of human control!",
+        badge: "🌍 COOPERATIVE SETUP"
+      },
+      {
+        title: "2. TACTICAL TURN EXECUTIONS",
+        subtitle: "Rolling Action Dice & Deploying Interventions",
+        content: "Roll custom action dice to fly across regional sectors (Boat/Plane), gather empirical evidence folders, treat localized harm dice with targeted interventions, and convene stakeholders into joint summit task forces.",
+        speechBubble: "Every die face represents a real governance action—from local field studies to international diplomatic flights!",
+        badge: "🎲 ACTION ENGINE"
+      },
+      {
+        title: "3. INTERNATIONAL TREATY RATIFICATION",
+        subtitle: "Building Empirical Evidence & Consensus",
+        content: "Gathering harm dice as evidence folders into our shared coalition pool, then convening at the Global Hub to execute the International Consensus Summit Mini-Game! A total roll >= 13 ratifies global binding treaties for that harm pillar.",
+        speechBubble: "When we ratify international consensus on a harm pillar, treating it becomes vastly easier worldwide!",
+        badge: "🏛️ CONSENSUS SUMMITS"
+      },
+      {
+        title: "4. SYSTEMIC ESCALATION",
+        subtitle: "AI Deployment Rate Track Acceleration",
+        content: "The Deployment Rate Track advancing step-by-step each round, drawing more harm dice from the cloth AI Bag. High deployment tiers force 3, 4, or 5 harm draws per turn across sectors!",
+        speechBubble: "Unchecked deployment acceleration fuels rapid cascading spillovers into neighboring continents!",
+        badge: "📈 ESCALATION TRACK"
+      },
+      {
+        title: "5. CASCADING SPILLOVER RISK",
+        subtitle: "Critical Mass & Singularity Loss Conditions",
+        content: "Allowing more than 3 harm dice of the same color to accumulate in any sector—triggering a CRITICAL MASS BOOM spillover—or letting the Deployment Track reach Step 16 (Full Uncontrolled Singularity).",
+        speechBubble: "If systemic risks overflow globally or the AI bag runs dry, governance fails!",
+        badge: "💥 CASCADING RISK"
+      },
+      {
+        title: "6. GLOBAL HARMONIZATION VICTORY",
+        subtitle: "Ratifying All 4 AI Governance Pillars",
+        content: "Successfully ratifying international consensus on ALL 4 AI Harm Pillars (Discrimination, Emotional Dependency, Alienation, Disinformation) at the Summit before step 16 is reached!",
+        speechBubble: "Victory means safe, human-aligned AI governance for the future of humanity!",
+        badge: "🏆 HUMAN VICTORY"
+      }
+    ];
+
+    let currentSlideIndex = 0;
+    let speechSynth = window.speechSynthesis;
+    let narratorEnabled = false;
+
+    function renderPitchSlide(index) {
+      const slide = PITCH_SLIDES[index];
+      const container = document.getElementById('pitch-slide-content');
+
+      container.innerHTML = `
+        <div class="flex justify-between items-center border-b border-slate-200 pb-4">
+          <div>
+            <span class="px-2.5 py-1 text-[10px] font-mono uppercase tracking-widest bg-sky-100 text-sky-800 border border-sky-200 rounded-md font-bold">${slide.badge}</span>
+            <h3 class="text-2xl md:text-3xl font-heading font-bold text-slate-900 mt-2 leading-none">${slide.title}</h3>
+            <p class="text-sm font-medium text-slate-500 mt-1">${slide.subtitle}</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+          <div class="glass-card p-5 border-l-4 border-l-sky-500 bg-sky-50/60 space-y-2">
+            <span class="text-[10px] font-mono text-sky-800 uppercase font-bold tracking-wider">SPEAKER COMMENTARY</span>
+            <p class="text-sm text-slate-800 leading-relaxed italic font-medium">
+              "${slide.speechBubble}"
+            </p>
+          </div>
+
+          <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 text-xs md:text-sm text-slate-700 leading-relaxed">
+            ${slide.content}
+          </div>
+        </div>
+      `;
+
+      document.getElementById('slide-number').innerText = `SLIDE ${index + 1} / ${PITCH_SLIDES.length}`;
+
+      if (narratorEnabled && speechSynth) {
+        speechSynth.cancel();
+        const textToSpeak = `${slide.title}. ${slide.subtitle}. ${slide.speechBubble}`;
+        const utterance = new SpeechSynthesisUtterance(textToSpeak);
+        speechSynth.speak(utterance);
+      }
+    }
+
+    function nextSlide() {
+      currentSlideIndex = (currentSlideIndex + 1) % PITCH_SLIDES.length;
+      renderPitchSlide(currentSlideIndex);
+    }
+
+    function prevSlide() {
+      currentSlideIndex = (currentSlideIndex - 1 + PITCH_SLIDES.length) % PITCH_SLIDES.length;
+      renderPitchSlide(currentSlideIndex);
+    }
+
+    function toggleNarrator() {
+      narratorEnabled = !narratorEnabled;
+      document.getElementById('narrator-btn').innerHTML = narratorEnabled ? '<span>🗣️</span> <span>Voice Narrator: On</span>' : '<span>🗣️</span> <span>Voice Narrator: Off</span>';
+      if (narratorEnabled) renderPitchSlide(currentSlideIndex);
+      else if (speechSynth) speechSynth.cancel();
+    }
+
+    /* ===================================================================
+       SECTION 3: CHARACTER ROLES DOSSIERS
+       =================================================================== */
+    function renderRoleCards() {
+      const container = document.getElementById('roles-grid');
+      container.innerHTML = '';
+
+      ROLES.forEach(r => {
+        const card = document.createElement('div');
+        card.className = `glass-card p-5 space-y-3 relative overflow-hidden border-t-4 ${r.color}`;
+        card.innerHTML = `
+          <div class="flex justify-between items-start border-b border-slate-200 pb-3">
+            <div>
+              <span class="text-[10px] font-mono uppercase text-slate-400 font-bold">DOSSIER FILE</span>
+              <h3 class="text-xl font-heading font-bold ${r.textColor} leading-tight mt-0.5">${r.name}</h3>
+            </div>
+            <div class="w-10 h-10 rounded-xl border ${r.badgeBg} flex items-center justify-center text-xl shadow-sm">
+              ${r.pawnSymbol}
+            </div>
+          </div>
+
+          <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200 text-xs font-mono flex justify-between items-center">
+            <span class="text-slate-500 font-medium">Dice Pool Size:</span>
+            <span class="text-sky-800 font-bold">${r.diceCount} Action Dice</span>
+          </div>
+
+          <div class="bg-amber-50/70 p-3 rounded-xl border border-amber-200/80 space-y-1">
+            <h4 class="text-[10px] font-mono uppercase text-amber-800 font-bold">PASSIVE CAPABILITY:</h4>
+            <p class="text-xs text-amber-900 leading-relaxed font-medium">${r.power}</p>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+  </script>
+</body>
+</html>
